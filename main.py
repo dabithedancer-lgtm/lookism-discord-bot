@@ -52,7 +52,8 @@ async def main():
         'cogs.crew',  # Crew system (max 4 crews)
         'cogs.leaderboard',
         'cogs.help',
-        'cogs.combat'  # Restored PvP
+        'cogs.combat',  # Restored PvP
+        'cogs.patreon'  # Patreon system
     ]
 
     # Load cogs
