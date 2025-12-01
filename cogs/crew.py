@@ -26,8 +26,10 @@ class CaptureBattleView(View):
         self.on_end = on_end_callback
         self.turn = 0
         self.max_turns = 15
-        self.my_team_battle = [{"name": c["name"], "atk": c["atk"], "hp": c["hp"], "max_hp": c["max_hp"]} for c in my_team]
-        self.en_team_battle = [{"name": c["name"], "atk": c["atk"], "hp": c["hp"], "max_hp": c["max_hp"]} for c in en_team]
+        self.my_team_battle = [{"name": c["name"], "atk": c["atk"],
+                                "hp": c["hp"], "max_hp": c["max_hp"]} for c in my_team]
+        self.en_team_battle = [{"name": c["name"], "atk": c["atk"],
+                                "hp": c["hp"], "max_hp": c["max_hp"]} for c in en_team]
         self.log = []
         self.battle_active = True
         self.msg = None
@@ -69,8 +71,10 @@ class CaptureBattleView(View):
         d = random.choice(p2_alive)
         dmg = int(attacker['atk'] * (0.8 + random.random() * 0.4))
         d['hp'] = max(0, d['hp'] - dmg)
-        hp_percent = int((d['hp'] / d['max_hp']) * 100) if d['max_hp'] > 0 else 0
-        self.log.append(f"🔵 **{attacker['name']}** → **{d['name']}** `{dmg}` dmg ({hp_percent}% HP)")
+        hp_percent = int((d['hp'] / d['max_hp']) *
+                         100) if d['max_hp'] > 0 else 0
+        self.log.append(
+            f"🔵 **{attacker['name']}** → **{d['name']}** `{dmg}` dmg ({hp_percent}% HP)")
 
         p1_alive = [c for c in self.my_team_battle if c['hp'] > 0]
         if p1_alive and any(c['hp'] > 0 for c in self.en_team_battle):
@@ -78,8 +82,10 @@ class CaptureBattleView(View):
             t = random.choice(p1_alive)
             edmg = int(e['atk'] * (0.8 + random.random() * 0.4))
             t['hp'] = max(0, t['hp'] - edmg)
-            thp_percent = int((t['hp'] / t['max_hp']) * 100) if t['max_hp'] > 0 else 0
-            self.log.append(f"🔴 **{e['name']}** → **{t['name']}** `{edmg}` dmg ({thp_percent}% HP)")
+            thp_percent = int((t['hp'] / t['max_hp']) *
+                              100) if t['max_hp'] > 0 else 0
+            self.log.append(
+                f"🔴 **{e['name']}** → **{t['name']}** `{edmg}` dmg ({thp_percent}% HP)")
 
         self.turn += 1
 
@@ -101,7 +107,8 @@ class CaptureBattleView(View):
             description=f"**Turn {self.turn}**\n\n🔵 **{self.ctx.author.display_name}** vs 🔴 **{self.defender_name}**",
             color=0xF1C40F
         )
-        embed.set_author(name="Territory Capture", icon_url=self.ctx.author.display_avatar.url)
+        embed.set_author(name="Territory Capture",
+                         icon_url=self.ctx.author.display_avatar.url)
 
         my_team_text = "\n".join([
             f"• **{c['name']}** (Str: {c['atk']} | HP: {c['hp']}/{c['max_hp']})"
@@ -117,7 +124,8 @@ class CaptureBattleView(View):
 
         if self.log:
             recent_log = "\n".join(self.log[-5:])
-            embed.add_field(name="📋 Recent Actions", value=recent_log, inline=False)
+            embed.add_field(name="📋 Recent Actions",
+                            value=recent_log, inline=False)
 
         embed.set_footer(text="Choose a card button below to attack!")
         await interaction.response.edit_message(embed=embed, view=self)
@@ -127,10 +135,12 @@ class CaptureBattleView(View):
         await self.on_end(p1_win, self.log[:])
         result_embed = discord.Embed(
             title="🏴 Territory Battle Result",
-            description=f"{'You won!' if p1_win else 'You were defeated.'}\n\n**Highlights:**\n" + "\n".join(self.log[:10]),
+            description=f"{'You won!' if p1_win else 'You were defeated.'}\n\n**Highlights:**\n" +
+            "\n".join(self.log[:10]),
             color=0x2ECC71 if p1_win else 0xE74C3C
         )
-        result_embed.set_author(name="Territory Capture", icon_url=self.ctx.author.display_avatar.url)
+        result_embed.set_author(name="Territory Capture",
+                                icon_url=self.ctx.author.display_avatar.url)
         await self.msg.edit(embed=result_embed, view=None)
 
 
@@ -210,7 +220,8 @@ class Crew(commands.Cog):
         Returns a list of dicts: {name, atk, hp, max_hp}.
         """
         users = load(USERS_FILE)
-        cards_db = load(config.CARDS_FILE) if hasattr(config, "CARDS_FILE") else load("data/cards.json")
+        cards_db = load(config.CARDS_FILE) if hasattr(
+            config, "CARDS_FILE") else load("data/cards.json")
         uid_str = str(uid)
         user = users.get(uid_str)
         if not user:
@@ -237,23 +248,29 @@ class Crew(commands.Cog):
                 owned = find_owned_card_by_name(name)
                 if not owned:
                     continue
-                base = next((v for v in cards_db.values() if v.get("name") == owned.get("name")), None)
+                base = next((v for v in cards_db.values() if v.get(
+                    "name") == owned.get("name")), None)
                 if not base:
                     continue
-                stats = compute_stats(base, owned.get("level", 1), owned.get("aura", 0), owned.get("equipped_item_id"))
+                stats = compute_stats(base, owned.get("level", 1), owned.get(
+                    "aura", 0), owned.get("equipped_item_id"))
                 atk = int(stats["attack"])
                 hp = int(stats["health"])
-                team_data.append({"name": owned["name"], "atk": atk, "hp": hp, "max_hp": hp})
+                team_data.append(
+                    {"name": owned["name"], "atk": atk, "hp": hp, "max_hp": hp})
 
         if not team_data:
             for c in owned_cards[:4]:
-                base = next((v for v in cards_db.values() if v.get("name") == c.get("name")), None)
+                base = next((v for v in cards_db.values()
+                            if v.get("name") == c.get("name")), None)
                 if not base:
                     continue
-                stats = compute_stats(base, c.get("level", 1), c.get("aura", 0), c.get("equipped_item_id"))
+                stats = compute_stats(base, c.get("level", 1), c.get(
+                    "aura", 0), c.get("equipped_item_id"))
                 atk = int(stats["attack"])
                 hp = int(stats["health"])
-                team_data.append({"name": c["name"], "atk": atk, "hp": hp, "max_hp": hp})
+                team_data.append(
+                    {"name": c["name"], "atk": atk, "hp": hp, "max_hp": hp})
 
         return team_data
 
@@ -270,8 +287,10 @@ class Crew(commands.Cog):
 
         Returns (attacker_won: bool, log_lines: list[str]).
         """
-        atk = [{"name": c["name"], "atk": c["atk"], "hp": c["hp"], "max_hp": c.get("max_hp", c["hp"])} for c in atk_team]
-        deff = [{"name": c["name"], "atk": c["atk"], "hp": c["hp"], "max_hp": c.get("max_hp", c["hp"])} for c in def_team]
+        atk = [{"name": c["name"], "atk": c["atk"], "hp": c["hp"],
+                "max_hp": c.get("max_hp", c["hp"])} for c in atk_team]
+        deff = [{"name": c["name"], "atk": c["atk"], "hp": c["hp"],
+                 "max_hp": c.get("max_hp", c["hp"])} for c in def_team]
         log = []
         turn = 0
         max_turns = 20
@@ -287,8 +306,10 @@ class Crew(commands.Cog):
             d = random.choice(def_alive)
             dmg = int(a["atk"] * (0.8 + random.random() * 0.4))
             d["hp"] = max(0, d["hp"] - dmg)
-            hp_percent = int((d["hp"] / d["max_hp"]) * 100) if d["max_hp"] > 0 else 0
-            log.append(f"🔵 {a['name']} → {d['name']} `{dmg}` dmg ({hp_percent}% HP)")
+            hp_percent = int((d["hp"] / d["max_hp"]) *
+                             100) if d["max_hp"] > 0 else 0
+            log.append(
+                f"🔵 {a['name']} → {d['name']} `{dmg}` dmg ({hp_percent}% HP)")
 
             def_alive = [c for c in deff if c["hp"] > 0]
             atk_alive = [c for c in atk if c["hp"] > 0]
@@ -299,8 +320,10 @@ class Crew(commands.Cog):
             t = random.choice(atk_alive)
             edmg = int(e["atk"] * (0.8 + random.random() * 0.4))
             t["hp"] = max(0, t["hp"] - edmg)
-            thp_percent = int((t["hp"] / t["max_hp"]) * 100) if t["max_hp"] > 0 else 0
-            log.append(f"🔴 {e['name']} → {t['name']} `{edmg}` dmg ({thp_percent}% HP)")
+            thp_percent = int((t["hp"] / t["max_hp"]) *
+                              100) if t["max_hp"] > 0 else 0
+            log.append(
+                f"🔴 {e['name']} → {t['name']} `{edmg}` dmg ({thp_percent}% HP)")
 
         atk_alive = any(c["hp"] > 0 for c in atk)
         def_alive = any(c["hp"] > 0 for c in deff)
@@ -552,7 +575,8 @@ class Crew(commands.Cog):
             npc_team = []
             for c in chosen:
                 hp = int(c.get("hp", 1))
-                npc_team.append({"name": c.get("name", "NPC"), "atk": int(c.get("atk", 1)), "hp": hp, "max_hp": hp})
+                npc_team.append({"name": c.get("name", "NPC"), "atk": int(
+                    c.get("atk", 1)), "hp": hp, "max_hp": hp})
 
             defender_name = "Territory Enforcers"
             # Start interactive battle
@@ -561,10 +585,12 @@ class Crew(commands.Cog):
                 description=f"You're challenging **{defender_name}** for **{territory_name_clean}**!",
                 color=0xF1C40F
             )
-            embed.set_author(name="Territory Capture", icon_url=ctx.author.display_avatar.url)
+            embed.set_author(name="Territory Capture",
+                             icon_url=ctx.author.display_avatar.url)
             embed.set_footer(text="Prepare for battle!")
             msg = await ctx.send(embed=embed)
-            view = CaptureBattleView(ctx, attacker_team, npc_team, defender_name, self.ensure_user, lambda won, log: self._handle_capture_end(ctx, won, log, territory_name_clean, f_type, f_id, faction, None, None))
+            view = CaptureBattleView(ctx, attacker_team, npc_team, defender_name, self.ensure_user, lambda won, log: self._handle_capture_end(
+                ctx, won, log, territory_name_clean, f_type, f_id, faction, None, None))
             view.msg = msg
             await msg.edit(view=view)
             return
@@ -584,7 +610,8 @@ class Crew(commands.Cog):
                 agent = white_agents[defense_id]
                 for c in agent.get("team", []):
                     hp = int(c.get("hp", 1))
-                    def_team.append({"name": c.get("name", "Agent"), "atk": int(c.get("atk", 1)), "hp": hp, "max_hp": hp})
+                    def_team.append({"name": c.get("name", "Agent"), "atk": int(
+                        c.get("atk", 1)), "hp": hp, "max_hp": hp})
                 defender_name = agent.get("name", "White Tiger Agent")
             else:
                 try:
@@ -629,10 +656,12 @@ class Crew(commands.Cog):
             description=f"You're challenging **{defender_name}** for **{territory_name_clean}**!",
             color=0xF1C40F
         )
-        embed.set_author(name="Territory Capture", icon_url=ctx.author.display_avatar.url)
+        embed.set_author(name="Territory Capture",
+                         icon_url=ctx.author.display_avatar.url)
         embed.set_footer(text="Prepare for battle!")
         msg = await ctx.send(embed=embed)
-        view = CaptureBattleView(ctx, attacker_team, def_team, defender_name, self.ensure_user, lambda won, log: self._handle_capture_end(ctx, won, log, territory_name_clean, f_type, f_id, faction, owner_type, owner_id))
+        view = CaptureBattleView(ctx, attacker_team, def_team, defender_name, self.ensure_user, lambda won, log: self._handle_capture_end(
+            ctx, won, log, territory_name_clean, f_type, f_id, faction, owner_type, owner_id))
         view.msg = msg
         await msg.edit(view=view)
 
@@ -651,14 +680,16 @@ class Crew(commands.Cog):
                 owner = gangs.get(owner_id)
                 if owner:
                     owner.setdefault("territories", [])
-                    owner["territories"] = [t for t in owner["territories"] if str(t).lower() != territory_name_clean.lower()]
+                    owner["territories"] = [t for t in owner["territories"]
+                                            if str(t).lower() != territory_name_clean.lower()]
                     gangs[owner_id] = owner
                     save(GANGS_FILE, gangs)
             else:
                 owner = crews.get(owner_id)
                 if owner:
                     owner.setdefault("territories", [])
-                    owner["territories"] = [t for t in owner["territories"] if str(t).lower() != territory_name_clean.lower()]
+                    owner["territories"] = [t for t in owner["territories"]
+                                            if str(t).lower() != territory_name_clean.lower()]
                     crews[owner_id] = owner
                     save(CREWS_FILE, crews)
 
@@ -860,5 +891,5 @@ class Crew(commands.Cog):
         await ctx.send(embed=embed)
 
 
-def setup(bot):
-    bot.add_cog(Crew(bot))
+async def setup(bot):
+    await bot.add_cog(Crew(bot))

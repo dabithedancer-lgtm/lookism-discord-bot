@@ -2065,5 +2065,5 @@ class BossRaidView(View):
         await self.ctx.message.edit(embed=embed, view=self)
 
 
-def setup(bot):
-    bot.add_cog(Combat(bot))
+async def setup(bot):
+    await bot.add_cog(Combat(bot))

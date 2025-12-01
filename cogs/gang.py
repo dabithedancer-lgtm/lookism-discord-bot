@@ -21,7 +21,8 @@ class GangInviteView(View):
         self.leader = leader
         self.member = member
 
-        accept_button = Button(label="Accept", style=discord.ButtonStyle.success)
+        accept_button = Button(
+            label="Accept", style=discord.ButtonStyle.success)
         deny_button = Button(label="Deny", style=discord.ButtonStyle.danger)
 
         async def accept_callback(interaction: discord.Interaction):
@@ -495,7 +496,8 @@ class Gang(commands.Cog):
             description=f"{member.mention}, you have been invited to join **{gang['name']}** by {ctx.author.mention}.",
             color=0x3498DB,
         )
-        embed.set_footer(text="Use the buttons below to accept or deny the invitation.")
+        embed.set_footer(
+            text="Use the buttons below to accept or deny the invitation.")
         await ctx.send(content=member.mention, embed=embed, view=view)
 
     @commands.command(name="gang_remove", aliases=["gangremove", "gangkick"])
@@ -650,8 +652,10 @@ class Gang(commands.Cog):
             description=f"You deposited **{amount:,}** yen into **{gang.get('name', 'your gang')}**'s bank.",
             color=0x2ECC71,
         )
-        embed.add_field(name="💰 Your New Balance", value=f"`{user.get('yen', 0):,}` yen", inline=True)
-        embed.add_field(name="🏦 Gang Bank Balance", value=f"`{gang.get('bank', 0):,}` yen", inline=True)
+        embed.add_field(name="💰 Your New Balance",
+                        value=f"`{user.get('yen', 0):,}` yen", inline=True)
+        embed.add_field(name="🏦 Gang Bank Balance",
+                        value=f"`{gang.get('bank', 0):,}` yen", inline=True)
         await ctx.send(embed=embed)
 
     @commands.command(name="business_create", aliases=["biz"])
@@ -902,5 +906,5 @@ class Gang(commands.Cog):
         await ctx.send(embed=embed)
 
 
-def setup(bot):
-    bot.add_cog(Gang(bot))
+async def setup(bot):
+    await bot.add_cog(Gang(bot))
