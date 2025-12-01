@@ -723,5 +723,5 @@ class Gacha(commands.Cog):
         await msg.edit(embed=result_embed)
 
 
-def setup(bot):
-    bot.add_cog(Gacha(bot))
+async def setup(bot):
+    await bot.add_cog(Gacha(bot))
