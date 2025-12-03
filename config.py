@@ -1,12 +1,11 @@
 # config.py
 import os
 
-# Read token directly from utils/env
-with open('utils/env', 'r') as f:
-    TOKEN = f.read().strip().replace('DISCORD_TOKEN=', '')
+# Read token from environment variables
+TOKEN = os.getenv('DISCORD_TOKEN')
 
 if not TOKEN:
-    raise ValueError("DISCORD_TOKEN not found in utils/env!")
+    raise ValueError("DISCORD_TOKEN not found in environment variables!")
 
 PREFIXES = [
     "ls ", "ls",      # lower
