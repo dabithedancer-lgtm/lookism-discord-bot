@@ -1,12 +1,12 @@
 # config.py
 import os
-from dotenv import load_dotenv
 
-load_dotenv()
+# Read token directly from utils/env
+with open('utils/env', 'r') as f:
+    TOKEN = f.read().strip().replace('DISCORD_TOKEN=', '')
 
-TOKEN = os.getenv("DISCORD_TOKEN")
 if not TOKEN:
-    raise ValueError("DISCORD_TOKEN environment variable not set!")
+    raise ValueError("DISCORD_TOKEN not found in utils/env!")
 
 PREFIXES = [
     "ls ", "ls",      # lower
@@ -26,6 +26,13 @@ MINE_COOLDOWN = 14400  # 4 hours
 # URLs (Placeholders - Replace with your actual URLs)
 IMG_SUMMON_ORB = "https://media.tenor.com/2RoDo8pZt6wAAAAC/black-clover-mobile-summon.gif"
 IMG_TERRITORY_MAP = "https://example.com/map.jpg"
+
+# Patreon Role IDs
+PATREON_ROLES = [
+    1444532012424888454,  # Copy Tier
+    1444532053776535676,  # UI Tier
+    1444532102338052216   # TUI Tier
+]
 
 # File Paths
 DATA_DIR = "./data"

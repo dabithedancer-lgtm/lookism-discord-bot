@@ -4,9 +4,11 @@ from utils.database import load
 
 WEAPONS_FILE = "data/weapons.json"
 
+
 def compute_stats(card_data, level, aura, equipped_item_id=None):
     # Base Stats
-    stats = card_data.get('stats', {}).get('evo_1', {'attack': 10, 'health': 100, 'speed': 10})
+    stats = card_data.get('stats', {}).get(
+        'evo_1', {'attack': 10, 'health': 100, 'speed': 10})
     base_atk = stats.get('attack', 10)
     base_hp = stats.get('health', 100)
     base_spd = stats.get('speed', 10)
@@ -29,14 +31,16 @@ def compute_stats(card_data, level, aura, equipped_item_id=None):
             final_hp += item['stats'].get('health', 0)
             final_spd += item['stats'].get('speed', 0)
 
-    return { "attack": final_atk, "health": final_hp, "speed": final_spd }
+    return {"attack": final_atk, "health": final_hp, "speed": final_spd}
+
 
 def regenerate_pulls(user):
     now = int(time.time())
     last = user.get("last_pull_regen_ts", now)
-    curr = user.get("pulls", config.MAX_PULLS)
+    max_pulls = user.get("max_pulls", config.MAX_PULLS)
+    curr = user.get("pulls", max_pulls)
 
-    if curr >= config.MAX_PULLS:
+    if curr >= max_pulls:
         user["last_pull_regen_ts"] = now
         return user
 
@@ -44,8 +48,10 @@ def regenerate_pulls(user):
     gained = diff // config.PULL_REGEN_SECONDS
 
     if gained > 0:
-        new_p = min(config.MAX_PULLS, curr + gained)
+        new_p = min(max_pulls, curr + gained)
         user["pulls"] = new_p
-        if new_p >= config.MAX_PULLS: user["last_pull_regen_ts"] = now
-        else: user["last_pull_regen_ts"] += (gained * config.PULL_REGEN_SECONDS)
+        if new_p >= max_pulls:
+            user["last_pull_regen_ts"] = now
+        else:
+            user["last_pull_regen_ts"] += (gained * config.PULL_REGEN_SECONDS)
     return user

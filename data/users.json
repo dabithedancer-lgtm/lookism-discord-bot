@@ -1,1325 +1,1446 @@
 {
-    "1334850425438081071": {
-        "banned": false,
-        "ban_reason": "Violation of ToS",
-        "reset_tokens": 49998,
-        "last_pull_regen_ts": 1764214444,
-        "pulls": 5,
-        "pity": 19,
-        "unlocked": [
-            "Kouji",
-            "Warren Chae",
-            "Crystal Choi(SB)",
-            "Mira Kim",
-            "Ethan Hwang",
-            "Mary Kim",
-            "Darius Hong",
-            "Elite",
-            "Jace Park",
-            "Sujin",
-            "Jaesu Noh",
-            "Shintaro Yamazaki",
-            "Gwang Yu",
-            "Shigeaki Kojima",
-            "Min Jihoon",
-            "Gentleman",
-            "Jason Yoon"
-        ],
-        "cards": [
-            {
-                "name": "Kouji",
-                "rarity": "A",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Crystal Choi(SB)",
-                "rarity": "B",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Mira Kim",
-                "rarity": "C",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Ethan Hwang",
-                "rarity": "S",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Mary Kim",
-                "rarity": "SS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Darius Hong",
-                "rarity": "B",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Elite",
-                "rarity": "SR",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Jace Park",
-                "rarity": "B",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Sujin",
-                "rarity": "B",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Jaesu Noh",
-                "rarity": "SS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Shintaro Yamazaki",
-                "rarity": "SR",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Gwang Yu",
-                "rarity": "SS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Shigeaki Kojima",
-                "rarity": "SS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Min Jihoon",
-                "rarity": "A",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Gentleman",
-                "rarity": "SSS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Jason Yoon",
-                "rarity": "SS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            }
-        ],
-        "fragments": {
-            "Warren Chae": 1,
-            "Ethan Hwang": 1,
-            "Gun Park": 50
-        },
-        "exp": 500,
-        "level": 4,
-        "yen": 10000500000,
-        "team": []
+  "1334850425438081071": {
+    "banned": false,
+    "ban_reason": "Violation of ToS",
+    "reset_tokens": 49998,
+    "last_pull_regen_ts": 1764214444,
+    "pulls": 5,
+    "pity": 19,
+    "unlocked": [
+      "Kouji",
+      "Warren Chae",
+      "Crystal Choi(SB)",
+      "Mira Kim",
+      "Ethan Hwang",
+      "Mary Kim",
+      "Darius Hong",
+      "Elite",
+      "Jace Park",
+      "Sujin",
+      "Jaesu Noh",
+      "Shintaro Yamazaki",
+      "Gwang Yu",
+      "Shigeaki Kojima",
+      "Min Jihoon",
+      "Gentleman",
+      "Jason Yoon"
+    ],
+    "cards": [
+      {
+        "name": "Kouji",
+        "rarity": "A",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Crystal Choi(SB)",
+        "rarity": "B",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Mira Kim",
+        "rarity": "C",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Ethan Hwang",
+        "rarity": "S",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Mary Kim",
+        "rarity": "SS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Darius Hong",
+        "rarity": "B",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Elite",
+        "rarity": "SR",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Jace Park",
+        "rarity": "B",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Sujin",
+        "rarity": "B",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Jaesu Noh",
+        "rarity": "SS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Shintaro Yamazaki",
+        "rarity": "SR",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Gwang Yu",
+        "rarity": "SS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Shigeaki Kojima",
+        "rarity": "SS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Min Jihoon",
+        "rarity": "A",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Gentleman",
+        "rarity": "SSS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Jason Yoon",
+        "rarity": "SS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      }
+    ],
+    "fragments": {
+      "Warren Chae": 1,
+      "Ethan Hwang": 1,
+      "Gun Park": 50
     },
-    "850031829649981490": {
-        "banned": false,
-        "ban_reason": "Violation of ToS",
-        "team": []
-    },
-    "977467533735120926": {
-        "yen": 7684,
-        "cards": [
-            {
-                "name": "Kouji",
-                "rarity": "A",
-                "level": 1,
-                "exp": 72,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Shingen Yamazaki",
-                "rarity": "UR",
-                "level": 1,
-                "exp": 103,
-                "evo": 0,
-                "aura": 0
-            }
-        ],
-        "fragments": {
-            "Gun Park": 5
-        },
-        "unlocked": [
-            "Kouji",
-            "Shingen Yamazaki"
-        ],
-        "pulls": 11,
-        "chests": {
-            "locker": 0
-        },
-        "tickets": {},
-        "equipment": {},
-        "wins": 3,
-        "streak": 0,
-        "last_claim_ts": 1764462187,
-        "last_pull_regen_ts": 1764469191,
-        "reset_tokens": 0,
-        "claim_streak": 1,
-        "team": [
-            "Kouji",
-            "Shingen Yamazaki"
-        ],
-        "gang_name": null
-    },
-    "1311982479032193065": {
-        "yen": 0,
-        "cards": [
-            {
-                "name": "Shingen Yamazaki",
-                "rarity": "UR",
-                "level": 1,
-                "exp": 31,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Gun Park",
-                "rarity": "UR",
-                "level": 1,
-                "exp": 35,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Gapryong Kim",
-                "rarity": "UR",
-                "level": 1,
-                "exp": 19,
-                "evo": 0,
-                "aura": 0
-            }
-        ],
-        "fragments": {},
-        "unlocked": [
-            "Shingen Yamazaki",
-            "Gun Park",
-            "Gapryong Kim"
-        ],
-        "pulls": 12,
-        "chests": {},
-        "tickets": {},
-        "equipment": {},
-        "wins": 1,
-        "streak": 1,
-        "reset_tokens": 50,
-        "team": []
-    },
-    "1292777123639201815": {
-        "pulls": 0,
-        "yen": 2321,
-        "cards": [
-            {
-                "name": "Sujin",
-                "rarity": "B",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Mary Kim",
-                "rarity": "SS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Mujin Jin",
-                "rarity": "SSS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Hyung Sangjin",
-                "rarity": "S",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Gwang Yu",
-                "rarity": "SS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Shingen Yamazaki",
-                "rarity": "UR",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Jinyeong Park",
-                "rarity": "SR",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Max Kang",
-                "rarity": "S",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Gon Kwon",
-                "rarity": "S",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Gapryong Kim",
-                "rarity": "UR",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Mandeok Bang",
-                "rarity": "SSS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Ryuhei Kuroda",
-                "rarity": "SSS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Manager Kim",
-                "rarity": "SSS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Wooseok",
-                "rarity": "A",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Zoe Park",
-                "rarity": "C",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Jibeom",
-                "rarity": "SS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Hiroaki Kojima",
-                "rarity": "SS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Hwang Ho",
-                "rarity": "C",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Daniel Park(FB)",
-                "rarity": "SR",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Jaewoo",
-                "rarity": "A",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Derek Jo",
-                "rarity": "A",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Kouji",
-                "rarity": "A",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Sinu Han",
-                "rarity": "SR",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Yuseong",
-                "rarity": "SSS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Taejin Cheon",
-                "rarity": "SSS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Minsik Choi",
-                "rarity": "S",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Hudson Ahn",
-                "rarity": "SSS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Jaesu Noh",
-                "rarity": "SS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Darius Hong",
-                "rarity": "B",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Kenta",
-                "rarity": "SS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Shigeaki Kojima",
-                "rarity": "SS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            }
-        ],
-        "fragments": {
-            "Shingen Yamazaki": 2,
-            "Wooseok": 1,
-            "Gapryong Kim": 1,
-            "Max Kang": 1,
-            "Mary Kim": 2,
-            "Jibeom": 1,
-            "Sujin": 1,
-            "Gwang Yu": 1
-        },
-        "unlocked": [
-            "Sujin",
-            "Mary Kim",
-            "Mujin Jin",
-            "Hyung Sangjin",
-            "Gwang Yu",
-            "Shingen Yamazaki",
-            "Jinyeong Park",
-            "Max Kang",
-            "Gon Kwon",
-            "Gapryong Kim",
-            "Mandeok Bang",
-            "Ryuhei Kuroda",
-            "Manager Kim",
-            "Wooseok",
-            "Zoe Park",
-            "Jibeom",
-            "Hiroaki Kojima",
-            "Hwang Ho",
-            "Daniel Park(FB)",
-            "Jaewoo",
-            "Derek Jo",
-            "Kouji",
-            "Sinu Han",
-            "Yuseong",
-            "Taejin Cheon",
-            "Minsik Choi",
-            "Hudson Ahn",
-            "Jaesu Noh",
-            "Darius Hong",
-            "Kenta",
-            "Shigeaki Kojima"
-        ],
-        "chests": {
-            "locker": 0
-        },
-        "tickets": {},
-        "equipment": {},
-        "wins": 0,
-        "streak": 0,
-        "last_pull_regen_ts": 1764577374,
-        "team": [
-            "Gapryong Kim",
-            "Shingen Yamazaki"
-        ],
-        "crew_name": "White ghost",
-        "claim_streak": 1,
-        "last_claim_ts": 1764572891
-    },
-    "1315746066900975770": {
-        "yen": 0,
-        "cards": [
-            {
-                "name": "Baekho Kwon",
-                "rarity": "SR",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Brad Lee",
-                "rarity": "SS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Min Jihoon",
-                "rarity": "A",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Samuel Seo",
-                "rarity": "SSS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Seokdu Wang",
-                "rarity": "SR",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Gon Kwon",
-                "rarity": "S",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Ryuhei Kuroda",
-                "rarity": "SSS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Max Kang",
-                "rarity": "S",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Eugene",
-                "rarity": "A",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Darius Hong",
-                "rarity": "B",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Yuseong",
-                "rarity": "SSS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Hyung Sangjin",
-                "rarity": "S",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Jacky Lee",
-                "rarity": "B",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Jaesu Noh",
-                "rarity": "SS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Bongae Choi",
-                "rarity": "S",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Noh Bakgu",
-                "rarity": "S",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Doo Lee",
-                "rarity": "A",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Sujin",
-                "rarity": "B",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Hudson Ahn",
-                "rarity": "SSS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Taegeuk Han ",
-                "rarity": "S",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Hwang Ho",
-                "rarity": "C",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Manager Kim",
-                "rarity": "SSS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Daniel Park(FB)",
-                "rarity": "SR",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Kouji",
-                "rarity": "A",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Ethan Hwang",
-                "rarity": "S",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Mitsuki Soma",
-                "rarity": "A",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Shin Arim",
-                "rarity": "B",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Gapryong Kim",
-                "rarity": "UR",
-                "level": 1,
-                "exp": 23,
-                "evo": 0,
-                "aura": 200
-            },
-            {
-                "name": "Mandeok Bang",
-                "rarity": "SSS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Kenta",
-                "rarity": "SS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Jibeom",
-                "rarity": "SS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Hiroaki Kojima",
-                "rarity": "SS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Mira Kim",
-                "rarity": "C",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Crystal Choi(FB)",
-                "rarity": "B",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Gentleman",
-                "rarity": "SSS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Shingen Yamazaki",
-                "rarity": "UR",
-                "level": 1,
-                "exp": 25,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Jason Yoon",
-                "rarity": "SS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Zoe Park",
-                "rarity": "C",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Xiaolung",
-                "rarity": "SSS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Gun Park",
-                "rarity": "UR",
-                "level": 1,
-                "exp": 30,
-                "evo": 0,
-                "aura": 99999800
-            },
-            {
-                "name": "Jaewoo",
-                "rarity": "A",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Mujin Jin",
-                "rarity": "SSS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Shigeaki Kojima",
-                "rarity": "SS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Jinrang",
-                "rarity": "SR",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Derek Jo",
-                "rarity": "A",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Jay",
-                "rarity": "SSS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Taesoo Ma",
-                "rarity": "SR",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Vasco",
-                "rarity": "SSS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Yujae Seon",
-                "rarity": "SSS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Shintaro Yamazaki",
-                "rarity": "SR",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Wooseok",
-                "rarity": "A",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Kang Jinchan",
-                "rarity": "SS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Warren Chae",
-                "rarity": "SSS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Brekdak",
-                "rarity": "SR",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Jerry Kwon",
-                "rarity": "SSS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Hangyeoul Baek",
-                "rarity": "SR",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Jace Park",
-                "rarity": "B",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Crystal Choi(SB)",
-                "rarity": "B",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Hyungjae",
-                "rarity": "A",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Pacheon Jo",
-                "rarity": "SR",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Gongseob Ji",
-                "rarity": "SR",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Mary Kim",
-                "rarity": "SS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Jake Kim",
-                "rarity": "SR",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Byeon Kim",
-                "rarity": "S",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Vivi",
-                "rarity": "B",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Taejin Cheon",
-                "rarity": "SSS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Minsik Choi",
-                "rarity": "S",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Taegon Wi",
-                "rarity": "SS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Elite",
-                "rarity": "SR",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Gwang Yu",
-                "rarity": "SS",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Vin Jin",
-                "rarity": "SR",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Tom Lee",
-                "rarity": "SR",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            },
-            {
-                "name": "Eli Jang",
-                "rarity": "SR",
-                "level": 1,
-                "exp": 0,
-                "evo": 0,
-                "aura": 0
-            }
-        ],
-        "fragments": {
-            "Samuel Seo": 5,
-            "Jaesu Noh": 5,
-            "Jacky Lee": 6,
-            "Doo Lee": 4,
-            "Gapryong Kim": 6,
-            "Min Jihoon": 5,
-            "Taegeuk Han ": 4,
-            "Hiroaki Kojima": 10,
-            "Hyung Sangjin": 3,
-            "Mitsuki Soma": 8,
-            "Ethan Hwang": 6,
-            "Noh Bakgu": 8,
-            "Hudson Ahn": 5,
-            "Gentleman": 2,
-            "Kouji": 11,
-            "Jibeom": 8,
-            "Sujin": 8,
-            "Max Kang": 5,
-            "Seokdu Wang": 1,
-            "Jason Yoon": 6,
-            "Xiaolung": 4,
-            "Shin Arim": 6,
-            "Ryuhei Kuroda": 4,
-            "Eugene": 5,
-            "Shigeaki Kojima": 7,
-            "Mira Kim": 6,
-            "Daniel Park(FB)": 2,
-            "Manager Kim": 5,
-            "Vasco": 1,
-            "Yujae Seon": 5,
-            "Gun Park": 6,
-            "Shingen Yamazaki": 4,
-            "Gon Kwon": 4,
-            "Jaewoo": 2,
-            "Crystal Choi(SB)": 4,
-            "Kang Jinchan": 3,
-            "Jinrang": 2,
-            "Derek Jo": 3,
-            "Mary Kim": 2,
-            "Shintaro Yamazaki": 3,
-            "Mujin Jin": 2,
-            "Kenta": 4,
-            "Bongae Choi": 6,
-            "Gongseob Ji": 1,
-            "Darius Hong": 2,
-            "Crystal Choi(FB)": 6,
-            "Yuseong": 4,
-            "Jace Park": 5,
-            "Jerry Kwon": 1,
-            "Zoe Park": 3,
-            "Byeon Kim": 1,
-            "Hyungjae": 3,
-            "Taejin Cheon": 1,
-            "Brad Lee": 3,
-            "Minsik Choi": 3,
-            "Hwang Ho": 3,
-            "Jay": 1,
-            "Mandeok Bang": 2,
-            "Jake Kim": 1,
-            "Brekdak": 1,
-            "Elite": 1,
-            "Gwang Yu": 1,
-            "Warren Chae": 1,
-            "Hangyeoul Baek": 1
-        },
-        "unlocked": [
-            "Baekho Kwon",
-            "Brad Lee",
-            "Min Jihoon",
-            "Samuel Seo",
-            "Seokdu Wang",
-            "Gon Kwon",
-            "Ryuhei Kuroda",
-            "Max Kang",
-            "Eugene",
-            "Darius Hong",
-            "Yuseong",
-            "Hyung Sangjin",
-            "Jacky Lee",
-            "Jaesu Noh",
-            "Bongae Choi",
-            "Noh Bakgu",
-            "Doo Lee",
-            "Sujin",
-            "Hudson Ahn",
-            "Taegeuk Han ",
-            "Hwang Ho",
-            "Manager Kim",
-            "Daniel Park(FB)",
-            "Kouji",
-            "Ethan Hwang",
-            "Mitsuki Soma",
-            "Shin Arim",
-            "Gapryong Kim",
-            "Mandeok Bang",
-            "Kenta",
-            "Jibeom",
-            "Hiroaki Kojima",
-            "Mira Kim",
-            "Crystal Choi(FB)",
-            "Gentleman",
-            "Shingen Yamazaki",
-            "Jason Yoon",
-            "Zoe Park",
-            "Xiaolung",
-            "Gun Park",
-            "Jaewoo",
-            "Mujin Jin",
-            "Shigeaki Kojima",
-            "Jinrang",
-            "Derek Jo",
-            "Jay",
-            "Taesoo Ma",
-            "Vasco",
-            "Yujae Seon",
-            "Shintaro Yamazaki",
-            "Wooseok",
-            "Kang Jinchan",
-            "Warren Chae",
-            "Brekdak",
-            "Jerry Kwon",
-            "Hangyeoul Baek",
-            "Jace Park",
-            "Crystal Choi(SB)",
-            "Hyungjae",
-            "Pacheon Jo",
-            "Gongseob Ji",
-            "Mary Kim",
-            "Jake Kim",
-            "Byeon Kim",
-            "Vivi",
-            "Taejin Cheon",
-            "Minsik Choi",
-            "Taegon Wi",
-            "Elite",
-            "Gwang Yu",
-            "Vin Jin",
-            "Tom Lee",
-            "Eli Jang"
-        ],
-        "pulls": 0,
-        "chests": {},
-        "tickets": {
-            "eli_jang_ticket": 1,
-            "zack_lee_ticket": 1,
-            "johan_seong_ticket": 2,
-            "goo_kim_ticket": 1,
-            "jake_kim_ticket": 1
-        },
-        "equipment": {},
-        "wins": 1,
-        "streak": 1,
-        "last_pull_regen_ts": 1764530030,
-        "last_claim_ts": 0,
-        "reset_tokens": 23,
-        "team": [
-            "Gun Park"
-        ],
-        "boss_raid_team": [
-            "Gun Park",
-            "Gapryong Kim"
-        ]
+    "exp": 500,
+    "level": 4,
+    "yen": 10000500000,
+    "team": [],
+    "patreon": {
+      "tier": "1",
+      "name": "Test",
+      "added_at": 1764717700,
+      "expires_at": 1767309700,
+      "perks": [
+        "test"
+      ]
     }
+  },
+  "850031829649981490": {
+    "banned": false,
+    "ban_reason": "Violation of ToS",
+    "team": [],
+    "patreon": {
+      "tier": "3",
+      "name": "TUI",
+      "added_at": 1764717935,
+      "expires_at": 1767309935,
+      "perks": [
+        "1 frag discount per level",
+        "20% off on evolving",
+        "3 rolls",
+        "20% more exp",
+        "5k yen every bundle",
+        "Random crate (Locker loot/2nd tier)",
+        "-2 hour quest cd (st)",
+        "1 ticket (vasco,Jace,Zack)",
+        "10% vasco 15% Zack 75% Jace",
+        "Multiroll",
+        "1.5x aura points",
+        "1.5x bounty points"
+      ]
+    },
+    "max_pulls": 22,
+    "quest_cooldown_reduction": 7200,
+    "exp_multiplier": 1.2,
+    "yen_per_bundle": 5000,
+    "tickets": {
+      "vasco": 1,
+      "jace": 1,
+      "zack": 1
+    },
+    "multiroll": true,
+    "random_crate": true,
+    "bounty_rates": {
+      "vasco": 0.1,
+      "zack": 0.15,
+      "jace": 0.75
+    },
+    "aura_multiplier": 1.5,
+    "bounty_multiplier": 1.5,
+    "patreon_tier": 3,
+    "pulls": 22
+  },
+  "977467533735120926": {
+    "yen": 7684,
+    "cards": [
+      {
+        "name": "Kouji",
+        "rarity": "A",
+        "level": 1,
+        "exp": 72,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Shingen Yamazaki",
+        "rarity": "UR",
+        "level": 1,
+        "exp": 103,
+        "evo": 0,
+        "aura": 0
+      }
+    ],
+    "fragments": {
+      "Gun Park": 5
+    },
+    "unlocked": [
+      "Kouji",
+      "Shingen Yamazaki"
+    ],
+    "pulls": 11,
+    "chests": {
+      "locker": 0
+    },
+    "tickets": {},
+    "equipment": {},
+    "wins": 3,
+    "streak": 0,
+    "last_claim_ts": 1764462187,
+    "last_pull_regen_ts": 1764469191,
+    "reset_tokens": 0,
+    "claim_streak": 1,
+    "team": [
+      "Kouji",
+      "Shingen Yamazaki"
+    ],
+    "gang_name": null
+  },
+  "1311982479032193065": {
+    "yen": 0,
+    "cards": [
+      {
+        "name": "Shingen Yamazaki",
+        "rarity": "UR",
+        "level": 1,
+        "exp": 31,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Gun Park",
+        "rarity": "UR",
+        "level": 1,
+        "exp": 35,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Gapryong Kim",
+        "rarity": "UR",
+        "level": 1,
+        "exp": 19,
+        "evo": 0,
+        "aura": 0
+      }
+    ],
+    "fragments": {},
+    "unlocked": [
+      "Shingen Yamazaki",
+      "Gun Park",
+      "Gapryong Kim"
+    ],
+    "pulls": 12,
+    "chests": {},
+    "tickets": {},
+    "equipment": {},
+    "wins": 1,
+    "streak": 1,
+    "reset_tokens": 50,
+    "team": []
+  },
+  "1292777123639201815": {
+    "pulls": 0,
+    "yen": 11767,
+    "cards": [
+      {
+        "name": "Sujin",
+        "rarity": "B",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Mary Kim",
+        "rarity": "SS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Mujin Jin",
+        "rarity": "SSS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Hyung Sangjin",
+        "rarity": "S",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Gwang Yu",
+        "rarity": "SS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Shingen Yamazaki",
+        "rarity": "UR",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Jinyeong Park",
+        "rarity": "SR",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Max Kang",
+        "rarity": "S",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Gon Kwon",
+        "rarity": "S",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Gapryong Kim",
+        "rarity": "UR",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Mandeok Bang",
+        "rarity": "SSS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Ryuhei Kuroda",
+        "rarity": "SSS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Manager Kim",
+        "rarity": "SSS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Wooseok",
+        "rarity": "A",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Zoe Park",
+        "rarity": "C",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Jibeom",
+        "rarity": "SS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Hiroaki Kojima",
+        "rarity": "SS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Hwang Ho",
+        "rarity": "C",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Daniel Park(FB)",
+        "rarity": "SR",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Jaewoo",
+        "rarity": "A",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Derek Jo",
+        "rarity": "A",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Kouji",
+        "rarity": "A",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Sinu Han",
+        "rarity": "SR",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Yuseong",
+        "rarity": "SSS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Taejin Cheon",
+        "rarity": "SSS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Minsik Choi",
+        "rarity": "S",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Hudson Ahn",
+        "rarity": "SSS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Jaesu Noh",
+        "rarity": "SS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Darius Hong",
+        "rarity": "B",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Kenta",
+        "rarity": "SS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Shigeaki Kojima",
+        "rarity": "SS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      }
+    ],
+    "fragments": {
+      "Shingen Yamazaki": 2,
+      "Wooseok": 1,
+      "Gapryong Kim": 1,
+      "Max Kang": 1,
+      "Mary Kim": 2,
+      "Jibeom": 1,
+      "Sujin": 1,
+      "Gwang Yu": 1
+    },
+    "unlocked": [
+      "Sujin",
+      "Mary Kim",
+      "Mujin Jin",
+      "Hyung Sangjin",
+      "Gwang Yu",
+      "Shingen Yamazaki",
+      "Jinyeong Park",
+      "Max Kang",
+      "Gon Kwon",
+      "Gapryong Kim",
+      "Mandeok Bang",
+      "Ryuhei Kuroda",
+      "Manager Kim",
+      "Wooseok",
+      "Zoe Park",
+      "Jibeom",
+      "Hiroaki Kojima",
+      "Hwang Ho",
+      "Daniel Park(FB)",
+      "Jaewoo",
+      "Derek Jo",
+      "Kouji",
+      "Sinu Han",
+      "Yuseong",
+      "Taejin Cheon",
+      "Minsik Choi",
+      "Hudson Ahn",
+      "Jaesu Noh",
+      "Darius Hong",
+      "Kenta",
+      "Shigeaki Kojima"
+    ],
+    "chests": {
+      "locker": 0
+    },
+    "tickets": {},
+    "equipment": {},
+    "wins": 0,
+    "streak": 0,
+    "last_pull_regen_ts": 1764577374,
+    "team": [
+      "Gapryong Kim",
+      "Shingen Yamazaki"
+    ],
+    "crew_name": "White ghost",
+    "claim_streak": 2,
+    "last_claim_ts": 1764687144
+  },
+  "1315746066900975770": {
+    "yen": 1000,
+    "cards": [
+      {
+        "name": "Baekho Kwon",
+        "rarity": "SR",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Brad Lee",
+        "rarity": "SS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Min Jihoon",
+        "rarity": "A",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Samuel Seo",
+        "rarity": "SSS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Seokdu Wang",
+        "rarity": "SR",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Gon Kwon",
+        "rarity": "S",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Ryuhei Kuroda",
+        "rarity": "SSS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Max Kang",
+        "rarity": "S",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Eugene",
+        "rarity": "A",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Darius Hong",
+        "rarity": "B",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Yuseong",
+        "rarity": "SSS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Hyung Sangjin",
+        "rarity": "S",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Jacky Lee",
+        "rarity": "B",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Jaesu Noh",
+        "rarity": "SS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Bongae Choi",
+        "rarity": "S",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Noh Bakgu",
+        "rarity": "S",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Doo Lee",
+        "rarity": "A",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Sujin",
+        "rarity": "B",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Hudson Ahn",
+        "rarity": "SSS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Taegeuk Han ",
+        "rarity": "S",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Hwang Ho",
+        "rarity": "C",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Manager Kim",
+        "rarity": "SSS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Daniel Park(FB)",
+        "rarity": "SR",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Kouji",
+        "rarity": "A",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Ethan Hwang",
+        "rarity": "S",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Mitsuki Soma",
+        "rarity": "A",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Shin Arim",
+        "rarity": "B",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Gapryong Kim",
+        "rarity": "UR",
+        "level": 1,
+        "exp": 23,
+        "evo": 0,
+        "aura": 200
+      },
+      {
+        "name": "Mandeok Bang",
+        "rarity": "SSS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Kenta",
+        "rarity": "SS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Jibeom",
+        "rarity": "SS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Hiroaki Kojima",
+        "rarity": "SS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Mira Kim",
+        "rarity": "C",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Crystal Choi(FB)",
+        "rarity": "B",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Gentleman",
+        "rarity": "SSS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Shingen Yamazaki",
+        "rarity": "UR",
+        "level": 1,
+        "exp": 25,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Jason Yoon",
+        "rarity": "SS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Zoe Park",
+        "rarity": "C",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Xiaolung",
+        "rarity": "SSS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Gun Park",
+        "rarity": "UR",
+        "level": 1,
+        "exp": 30,
+        "evo": 0,
+        "aura": 99999800
+      },
+      {
+        "name": "Jaewoo",
+        "rarity": "A",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Mujin Jin",
+        "rarity": "SSS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Shigeaki Kojima",
+        "rarity": "SS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Jinrang",
+        "rarity": "SR",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Derek Jo",
+        "rarity": "A",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Jay",
+        "rarity": "SSS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Taesoo Ma",
+        "rarity": "SR",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Vasco",
+        "rarity": "SSS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Yujae Seon",
+        "rarity": "SSS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Shintaro Yamazaki",
+        "rarity": "SR",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Wooseok",
+        "rarity": "A",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Kang Jinchan",
+        "rarity": "SS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Warren Chae",
+        "rarity": "SSS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Brekdak",
+        "rarity": "SR",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Jerry Kwon",
+        "rarity": "SSS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Hangyeoul Baek",
+        "rarity": "SR",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Jace Park",
+        "rarity": "B",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Crystal Choi(SB)",
+        "rarity": "B",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Hyungjae",
+        "rarity": "A",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Pacheon Jo",
+        "rarity": "SR",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Gongseob Ji",
+        "rarity": "SR",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Mary Kim",
+        "rarity": "SS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Jake Kim",
+        "rarity": "SR",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Byeon Kim",
+        "rarity": "S",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Vivi",
+        "rarity": "B",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Taejin Cheon",
+        "rarity": "SSS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Minsik Choi",
+        "rarity": "S",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Taegon Wi",
+        "rarity": "SS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Elite",
+        "rarity": "SR",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Gwang Yu",
+        "rarity": "SS",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Vin Jin",
+        "rarity": "SR",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Tom Lee",
+        "rarity": "SR",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Eli Jang",
+        "rarity": "SR",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Jaegyeon Na",
+        "rarity": "SR",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Sinu Han",
+        "rarity": "SR",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      },
+      {
+        "name": "Jinyeong Park",
+        "rarity": "SR",
+        "level": 1,
+        "exp": 0,
+        "evo": 0,
+        "aura": 0
+      }
+    ],
+    "fragments": {
+      "Samuel Seo": 7,
+      "Jaesu Noh": 6,
+      "Jacky Lee": 7,
+      "Doo Lee": 4,
+      "Gapryong Kim": 7,
+      "Min Jihoon": 8,
+      "Taegeuk Han ": 4,
+      "Hiroaki Kojima": 10,
+      "Hyung Sangjin": 5,
+      "Mitsuki Soma": 11,
+      "Ethan Hwang": 6,
+      "Noh Bakgu": 12,
+      "Hudson Ahn": 6,
+      "Gentleman": 4,
+      "Kouji": 14,
+      "Jibeom": 8,
+      "Sujin": 9,
+      "Max Kang": 6,
+      "Seokdu Wang": 1,
+      "Jason Yoon": 6,
+      "Xiaolung": 4,
+      "Shin Arim": 7,
+      "Ryuhei Kuroda": 5,
+      "Eugene": 6,
+      "Shigeaki Kojima": 7,
+      "Mira Kim": 6,
+      "Daniel Park(FB)": 2,
+      "Manager Kim": 5,
+      "Vasco": 1,
+      "Yujae Seon": 5,
+      "Gun Park": 7,
+      "Shingen Yamazaki": 6,
+      "Gon Kwon": 4,
+      "Jaewoo": 4,
+      "Crystal Choi(SB)": 7,
+      "Kang Jinchan": 4,
+      "Jinrang": 2,
+      "Derek Jo": 3,
+      "Mary Kim": 3,
+      "Shintaro Yamazaki": 3,
+      "Mujin Jin": 3,
+      "Kenta": 7,
+      "Bongae Choi": 8,
+      "Gongseob Ji": 1,
+      "Darius Hong": 2,
+      "Crystal Choi(FB)": 8,
+      "Yuseong": 4,
+      "Jace Park": 7,
+      "Jerry Kwon": 2,
+      "Zoe Park": 3,
+      "Byeon Kim": 2,
+      "Hyungjae": 3,
+      "Taejin Cheon": 1,
+      "Brad Lee": 3,
+      "Minsik Choi": 4,
+      "Hwang Ho": 5,
+      "Jay": 2,
+      "Mandeok Bang": 2,
+      "Jake Kim": 1,
+      "Brekdak": 2,
+      "Elite": 2,
+      "Gwang Yu": 1,
+      "Warren Chae": 2,
+      "Hangyeoul Baek": 1,
+      "Pacheon Jo": 1,
+      "Vivi": 2,
+      "Taegon Wi": 2,
+      "Eli Jang": 1
+    },
+    "unlocked": [
+      "Baekho Kwon",
+      "Brad Lee",
+      "Min Jihoon",
+      "Samuel Seo",
+      "Seokdu Wang",
+      "Gon Kwon",
+      "Ryuhei Kuroda",
+      "Max Kang",
+      "Eugene",
+      "Darius Hong",
+      "Yuseong",
+      "Hyung Sangjin",
+      "Jacky Lee",
+      "Jaesu Noh",
+      "Bongae Choi",
+      "Noh Bakgu",
+      "Doo Lee",
+      "Sujin",
+      "Hudson Ahn",
+      "Taegeuk Han ",
+      "Hwang Ho",
+      "Manager Kim",
+      "Daniel Park(FB)",
+      "Kouji",
+      "Ethan Hwang",
+      "Mitsuki Soma",
+      "Shin Arim",
+      "Gapryong Kim",
+      "Mandeok Bang",
+      "Kenta",
+      "Jibeom",
+      "Hiroaki Kojima",
+      "Mira Kim",
+      "Crystal Choi(FB)",
+      "Gentleman",
+      "Shingen Yamazaki",
+      "Jason Yoon",
+      "Zoe Park",
+      "Xiaolung",
+      "Gun Park",
+      "Jaewoo",
+      "Mujin Jin",
+      "Shigeaki Kojima",
+      "Jinrang",
+      "Derek Jo",
+      "Jay",
+      "Taesoo Ma",
+      "Vasco",
+      "Yujae Seon",
+      "Shintaro Yamazaki",
+      "Wooseok",
+      "Kang Jinchan",
+      "Warren Chae",
+      "Brekdak",
+      "Jerry Kwon",
+      "Hangyeoul Baek",
+      "Jace Park",
+      "Crystal Choi(SB)",
+      "Hyungjae",
+      "Pacheon Jo",
+      "Gongseob Ji",
+      "Mary Kim",
+      "Jake Kim",
+      "Byeon Kim",
+      "Vivi",
+      "Taejin Cheon",
+      "Minsik Choi",
+      "Taegon Wi",
+      "Elite",
+      "Gwang Yu",
+      "Vin Jin",
+      "Tom Lee",
+      "Eli Jang",
+      "Jaegyeon Na",
+      "Sinu Han",
+      "Jinyeong Park"
+    ],
+    "pulls": 0,
+    "chests": {
+      "locker": 1
+    },
+    "tickets": {
+      "eli_jang_ticket": 2,
+      "zack_lee_ticket": 1,
+      "johan_seong_ticket": 2,
+      "goo_kim_ticket": 1,
+      "jake_kim_ticket": 2,
+      "og_daniel_ticket": 1,
+      "vasco": 1,
+      "jace": 1,
+      "zack": 1
+    },
+    "equipment": {},
+    "wins": 1,
+    "streak": 1,
+    "last_pull_regen_ts": 1764717915,
+    "last_claim_ts": 1764634806,
+    "reset_tokens": 19,
+    "team": [
+      "Gun Park"
+    ],
+    "boss_raid_team": [
+      "Gun Park",
+      "Gapryong Kim"
+    ],
+    "claim_streak": 1,
+    "max_pulls": 22,
+    "patreon": {
+      "tier": "3",
+      "name": "TUI",
+      "added_at": 1764717899,
+      "expires_at": 1767309899,
+      "perks": [
+        "1 frag discount per level",
+        "20% off on evolving",
+        "3 rolls",
+        "20% more exp",
+        "5k yen every bundle",
+        "Random crate (Locker loot/2nd tier)",
+        "-2 hour quest cd (st)",
+        "1 ticket (vasco,Jace,Zack)",
+        "10% vasco 15% Zack 75% Jace",
+        "Multiroll",
+        "1.5x aura points",
+        "1.5x bounty points"
+      ]
+    },
+    "quest_cooldown_reduction": 7200,
+    "exp_multiplier": 1.2,
+    "yen_per_bundle": 5000,
+    "multiroll": true,
+    "random_crate": true,
+    "bounty_rates": {
+      "vasco": 0.1,
+      "zack": 0.15,
+      "jace": 0.75
+    },
+    "aura_multiplier": 1.5,
+    "bounty_multiplier": 1.5,
+    "patreon_tier": 3
+  }
 }

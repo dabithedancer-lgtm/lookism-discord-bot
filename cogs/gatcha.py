@@ -8,25 +8,36 @@ from discord.ui import View, Button, button
 from utils.database import load, save
 from utils.game_math import regenerate_pulls
 
-
-def has_patreon_role(member):
-    """Check if member has any patreon role"""
-    if not member:
-        return False
-    try:
-        if hasattr(member, 'roles'):
-            member_role_ids = [role.id for role in member.roles]
-            return any(role_id in config.PATREON_ROLES for role_id in member_role_ids)
-        return False
-    except Exception:
-        return False
-
-
 USERS_FILE = "data/users.json"
 CARDS_FILE = "data/cards.json"
 RARITIES_FILE = "data/rarities.json"
 BOSSES_FILE = "data/bosses.json"
 EMOJI_FILE = "data/emoji.json"
+
+
+def has_patreon_role(member):
+    """Check if member has any patreon role or is marked as a patron in the database"""
+    if not member:
+        return False
+
+    try:
+        # First check database
+        users = load(USERS_FILE)
+        uid = str(member.id)
+        if uid in users and "patreon" in users[uid]:
+            # Check if the subscription is still valid
+            if users[uid]["patreon"].get("expires_at", 0) > time.time():
+                return True
+
+        # Then check roles
+        if hasattr(member, 'roles'):
+            member_role_ids = [role.id for role in member.roles]
+            return any(role_id in config.PATREON_ROLES for role_id in member_role_ids)
+
+        return False
+    except Exception as e:
+        print(f"Error checking patreon status for {member}: {e}")
+        return False
 
 
 class PullAgainView(View):
@@ -46,6 +57,7 @@ class Gacha(commands.Cog):
         if uid not in users:
             users[uid] = {
                 "pulls": config.MAX_PULLS,
+                "max_pulls": config.MAX_PULLS,
                 "yen": 0,
                 "cards": [],
                 "fragments": {},
@@ -57,6 +69,13 @@ class Gacha(commands.Cog):
                 "streak": 0,
                 "last_pull_regen_ts": int(time.time())
             }
+        else:
+            users[uid]["max_pulls"] = max(users[uid].get(
+                "max_pulls", config.MAX_PULLS), config.MAX_PULLS)
+            users[uid]["pulls"] = min(users[uid].get(
+                "pulls", config.MAX_PULLS), users[uid]["max_pulls"])
+            if "last_pull_regen_ts" not in users[uid]:
+                users[uid]["last_pull_regen_ts"] = int(time.time())
         return users[uid]
 
     def get_card_type(self, stats):
@@ -68,24 +87,19 @@ class Gacha(commands.Cog):
         if health == 0:
             return "Unknown"
 
-        # Tank: health is speed + 70% attack
         if health >= (speed + (attack * 0.7)):
             return "Tank"
-
-        # Speedster: speed is 65% of health
-        if speed >= (health * 0.65):
-            return "Speedster"
-
-        # Striker: attack is 50% of health
-        if attack >= (health * 0.5):
-            return "Striker"
-
-        # Prodigy: speed = attack (within 10% tolerance)
-        if abs(speed - attack) <= (max(speed, attack) * 0.1):
-            return "Prodigy"
-
-        # Default to Balanced if none match
-        return "Balanced"
+        elif health >= (speed + attack) * 0.5:
+            return "Balanced"
+        else:
+            if speed >= (health * 0.65):
+                return "Speedster"
+            elif attack >= (health * 0.5):
+                return "Striker"
+            elif abs(speed - attack) <= (max(speed, attack) * 0.1):
+                return "Prodigy"
+            else:
+                return "Balanced"
 
     @commands.command(name="pull")
     async def pull(self, ctx):
@@ -93,23 +107,32 @@ class Gacha(commands.Cog):
         users = load(USERS_FILE)
         uid = str(ctx.author.id)
         user = self.ensure_user(users, uid)
+
+        if "max_pulls" not in user:
+            user["max_pulls"] = config.MAX_PULLS
+
         user = regenerate_pulls(user)
 
-        # Save updated user
+        max_pulls = user["max_pulls"]
+        if user.get("pulls", 0) > max_pulls:
+            user["pulls"] = max_pulls
+            user["last_pull_regen_ts"] = int(time.time())
+
         users[uid] = user
         save(USERS_FILE, users)
 
-        if user.get("pulls", 0) <= 0:
+        current_pulls = user.get("pulls", 0)
+        if current_pulls <= 0:
             embed = discord.Embed(
                 title="❌ Out of Pulls!",
-                description="You need to wait for your pulls to regenerate.\nUse `ls cd` to check cooldowns.\n\nOr use `ls resetpulls` to reset pulls with a reset token!",
+                description=f"You have `0/{max_pulls}` pulls left.\n\nUse `ls cd` to check cooldowns.",
                 color=0xE74C3C
             )
             embed.set_author(name=ctx.author.display_name,
                              icon_url=ctx.author.display_avatar.url)
             return await ctx.send(embed=embed)
 
-        # --- ANIMATION (1-2 seconds) ---
+        # Animation
         embed = discord.Embed(
             title="✨ Summoning Character...",
             description="The summoning orb is glowing...",
@@ -120,10 +143,10 @@ class Gacha(commands.Cog):
         embed.set_image(url=config.IMG_SUMMON_ORB)
         embed.set_footer(text="Summoning in progress...")
         msg = await ctx.send(embed=embed)
-        # Random between 1-2 seconds
+
         await asyncio.sleep(random.uniform(1.0, 2.0))
 
-        # --- LOGIC ---
+        # Logic
         user["pulls"] -= 1
 
         # 1. Ticket Logic (2.5% Chance)
@@ -150,578 +173,111 @@ class Gacha(commands.Cog):
         except Exception as e:
             print(f"Error loading bosses: {e}")
 
-        # 2. Card Logic - Load from dictionary structure
-        try:
-            cards_dict = load(CARDS_FILE)
-            rarities = load(RARITIES_FILE)
+        # 2. Card Logic
+        cards_dict = load(CARDS_FILE)
+        rarities = load(RARITIES_FILE)
 
-            if not cards_dict:
-                embed = discord.Embed(
-                    title="❌ No Cards Available",
-                    description="Card database is empty! Please add cards first.",
-                    color=0xE74C3C
-                )
-                await msg.edit(embed=embed)
-                return
-
-            # Convert dict to list for weighted selection
-            cards_list = list(cards_dict.values())
-
-            # Calculate weights based on rarity
-            weights = []
-            for card in cards_list:
-                rarity_key = card.get('rarity', 'C')
-                rarity_info = rarities.get(rarity_key, {})
-                # Default to 5 if not found
-                weight = rarity_info.get('weight_multiplier', 5)
-                weights.append(weight)
-
-            # Select card
-            chosen = random.choices(cards_list, weights=weights, k=1)[0]
-            chosen_rarity = chosen.get('rarity', 'C')
-            rarity_info = rarities.get(chosen_rarity, {})
-
-            user.setdefault("cards", [])
-            user.setdefault("unlocked", [])
-            is_new = False
-            card_name = chosen.get('name', 'Unknown')
-
-            if card_name not in user.get("unlocked", []):
-                is_new = True
-                user.setdefault("unlocked", []).append(card_name)
-                user["cards"].append({
-                    "name": card_name,
-                    "rarity": chosen_rarity,
-                    "level": 1,
-                    "exp": 0,
-                    "evo": 0,
-                    "aura": 0
-                })
-            else:
-                user.setdefault("fragments", {})
-                user["fragments"][card_name] = user["fragments"].get(
-                    card_name, 0) + 1
-        except Exception as e:
+        if not cards_dict:
             embed = discord.Embed(
-                title="❌ Error",
-                description=f"Error loading cards: {str(e)}",
+                title="❌ No Cards Available",
+                description="Card database is empty! Please add cards first.",
                 color=0xE74C3C
             )
             await msg.edit(embed=embed)
             return
 
-        # Save user data
+        cards_list = list(cards_dict.values())
+        weights = []
+        for card in cards_list:
+            rarity_key = card.get('rarity', 'C')
+            rarity_info = rarities.get(rarity_key, {})
+            weight = rarity_info.get('weight_multiplier', 5)
+            weights.append(weight)
+
+        chosen = random.choices(cards_list, weights=weights, k=1)[0]
+        chosen_rarity = chosen.get('rarity', 'C')
+        rarity_info = rarities.get(chosen_rarity, {})
+
+        user.setdefault("cards", [])
+        user.setdefault("unlocked", [])
+        is_new = False
+        card_name = chosen.get('name', 'Unknown')
+
+        if card_name not in user.get("unlocked", []):
+            is_new = True
+            user.setdefault("unlocked", []).append(card_name)
+            user["cards"].append({
+                "name": card_name,
+                "rarity": chosen_rarity,
+                "level": 1,
+                "exp": 0,
+                "evo": 0,
+                "aura": 0
+            })
+        else:
+            user.setdefault("fragments", {})
+            user["fragments"][card_name] = user["fragments"].get(
+                card_name, 0) + 1
+
         users[uid] = user
         save(USERS_FILE, users)
 
-        # --- RESULT EMBED ---
+        # Result Embed
         try:
-            # Get rarity color
             rarity_color = rarity_info.get("color", "#5865F2")
-            try:
-                col = int(rarity_color.replace("#", ""), 16)
-            except:
-                col = 0x5865F2
+            col = int(rarity_color.replace("#", ""), 16)
+        except:
+            col = 0x5865F2
 
-            # Get rarity display name and emoji
-            rarity_display = rarity_info.get("display_name", chosen_rarity)
-            rarity_emoji = rarity_info.get("emoji", "⭐")
+        rarity_display = rarity_info.get("display_name", chosen_rarity)
+        rarity_emoji = rarity_info.get("emoji", "⭐")
 
-            # Build title with rarity emoji
-            title = f"{rarity_emoji} {card_name}"
+        title = card_name
+        description = f"**{rarity_display}** ({chosen_rarity})"
 
-            # Build description
-            status_text = "✨ **NEW CHARACTER!**" if is_new else "💎 **Converted to Shards**"
-            description = f"**{rarity_display}** ({chosen_rarity})\n{status_text}"
-
-            final_embed = discord.Embed(
-                title=title,
-                description=description,
-                color=col
-            )
-            final_embed.set_author(
-                name=ctx.author.display_name, icon_url=ctx.author.display_avatar.url)
-
-            # Set rarity icon as thumbnail
-            if rarity_info.get("icon"):
-                final_embed.set_thumbnail(url=rarity_info["icon"])
-
-            # Set card image (evo_1) as main image
-            card_images = chosen.get("images", {})
-            if card_images.get("evo_1"):
-                final_embed.set_image(url=card_images["evo_1"])
-
-            # Add stats preview if available (WITHOUT EMOJIS, using names)
-            card_stats = chosen.get("stats", {})
-            if card_stats.get("evo_1"):
-                stats = card_stats["evo_1"]
-                attack = stats.get('attack', 'N/A')
-                health = stats.get('health', 'N/A')
-                speed = stats.get('speed', 'N/A')
-
-                # Determine card type
-                card_type = self.get_card_type(stats)
-
-                stats_text = f"**Strength:** `{attack}`\n**Health:** `{health}`\n**Speed:** `{speed}`"
-                final_embed.add_field(
-                    name="📊 Base Stats (Evo 1)", value=stats_text, inline=False)
-                final_embed.add_field(
-                    name="🎯 Type", value=f"**{card_type}**", inline=True)
-
-            # Add ability if available
-            if chosen.get("ability") and chosen.get("ability") != "None":
-                final_embed.add_field(
-                    name="✨ Ability", value=chosen.get("ability"), inline=False)
-
-            # Footer with info
-            footer_parts = [f"Pulls: {user['pulls']}/12"]
-
-            if ticket_drop:
-                footer_parts.append(
-                    f"BONUS: {ticket_drop.get('name', 'Unknown')} Ticket!")
-
-            if not is_new:
-                frag_count = user["fragments"].get(card_name, 0)
-                footer_parts.append(f"Shards: {frag_count}")
-
-            final_embed.set_footer(text=" • ".join(footer_parts))
-
-            # Clean UI: no extra buttons, just show the result
-            await msg.edit(embed=final_embed, view=None)
-
-        except Exception as e:
-            embed = discord.Embed(
-                title="❌ Error",
-                description=f"Error displaying result: {str(e)}",
-                color=0xE74C3C
-            )
-            await msg.edit(embed=embed)
-
-    @commands.command(name="mp", aliases=["mass_pull", "masspull"])
-    async def mass_pull(self, ctx):
-        """Mass pull all remaining pulls at once (Patreon only)! Usage: ls mp"""
-        # Check patreon role - get member from guild if available
-        member = ctx.guild.get_member(
-            ctx.author.id) if ctx.guild else ctx.author
-        if not has_patreon_role(member):
-            embed = discord.Embed(
-                title="❌ Patreon Only",
-                description="This command is only available to **Patreon members**!\n\nSupport us on Patreon to unlock this feature!",
-                color=0xE74C3C,
-            )
-            embed.set_author(
-                name=ctx.author.display_name,
-                icon_url=ctx.author.display_avatar.url,
-            )
-            return await ctx.send(embed=embed)
-
-        # Load and regenerate pulls
-        users = load(USERS_FILE)
-        uid = str(ctx.author.id)
-        user = self.ensure_user(users, uid)
-        user = regenerate_pulls(user)
-
-        # Save updated user
-        users[uid] = user
-        save(USERS_FILE, users)
-
-        amount = user.get("pulls", 0)
-        if amount <= 0:
-            embed = discord.Embed(
-                title="❌ Out of Pulls!",
-                description=(
-                    f"You have `{user.get('pulls', 0)}/12` pulls left. "
-                    "Nothing to mass pull.\n\nUse `ls cd` to check cooldowns."
-                ),
-                color=0xE74C3C,
-            )
-            embed.set_author(
-                name=ctx.author.display_name,
-                icon_url=ctx.author.display_avatar.url,
-            )
-            return await ctx.send(embed=embed)
-
-        # Start mass pull (use all remaining pulls)
-        loading_embed = discord.Embed(
-            title="✨ Mass Pulling...",
-            description=f"Pulling **{amount}** characters...",
-            color=0x5865F2,
+        final_embed = discord.Embed(
+            title=title,
+            description=description,
+            color=col
         )
-        loading_embed.set_author(
-            name=ctx.author.display_name,
-            icon_url=ctx.author.display_avatar.url,
-        )
-        loading_embed.set_footer(text="This may take a moment...")
-        msg = await ctx.send(embed=loading_embed)
+        final_embed.set_author(name=ctx.author.display_name,
+                               icon_url=ctx.author.display_avatar.url)
 
-        # Load data
-        cards_dict = load(CARDS_FILE)
-        rarities = load(RARITIES_FILE)
-        bosses = load(BOSSES_FILE)
+        if rarity_info.get("icon"):
+            final_embed.set_thumbnail(url=rarity_info["icon"])
 
-        if not cards_dict:
-            embed = discord.Embed(
-                title="❌ No Cards Available",
-                description="Card database is empty!",
-                color=0xE74C3C,
-            )
-            await msg.edit(embed=embed)
-            return
+        card_images = chosen.get("images", {})
+        if card_images.get("evo_1"):
+            final_embed.set_image(url=card_images["evo_1"])
 
-        # Prepare card pool and weights
-        cards_list = list(cards_dict.values())
-        weights = []
-        for card in cards_list:
-            rarity_key = card.get("rarity", "C")
-            rarity_info = rarities.get(rarity_key, {})
-            weight = rarity_info.get("weight_multiplier", 5)
-            weights.append(weight)
+        card_stats = chosen.get("stats", {})
+        if card_stats.get("evo_1"):
+            stats = card_stats["evo_1"]
+            attack = stats.get('attack', 'N/A')
+            health = stats.get('health', 'N/A')
+            speed = stats.get('speed', 'N/A')
 
-        # Load per-card emojis for fragments
-        emojis = load(EMOJI_FILE) or {}
+            card_type = self.get_card_type(stats)
+            stats_text = f"**Strength:** `{attack}`\n**Health:** `{health}`\n**Speed:** `{speed}`"
+            final_embed.add_field(
+                name="📊 Base Stats (Evo 1)", value=stats_text, inline=False)
+            final_embed.add_field(
+                name="🎯 Type", value=f"**{card_type}**", inline=True)
 
-        # Aggregated results
-        new_counts = {}      # card_name -> (count, rarity_emoji)
-        shard_counts = {}    # card_name -> (count, card_emoji)
-        tickets_gained = {}
+        if chosen.get("ability") and chosen.get("ability") != "None":
+            final_embed.add_field(
+                name="✨ Ability", value=chosen.get("ability"), inline=False)
 
-        user["pulls"] -= amount
+        max_pulls = user.get("max_pulls", config.MAX_PULLS)
+        footer_parts = [f"Pulls: {user['pulls']}/{max_pulls}"]
 
-        for _ in range(amount):
-            # Ticket chance (2.5%)
-            if bosses and random.random() * 100 <= 2.5:
-                total = sum(b.get("ticket_drop_rate", 0)
-                            for b in bosses.values())
-                if total > 0:
-                    r = random.uniform(0, total)
-                    curr = 0
-                    for b in bosses.values():
-                        curr += b.get("ticket_drop_rate", 0)
-                        if r <= curr:
-                            tid = f"{b.get('name', '').lower().replace(' ', '_')}_ticket"
-                            tickets_gained[tid] = tickets_gained.get(
-                                tid, 0) + 1
-                            user.setdefault("tickets", {})
-                            user["tickets"][tid] = user["tickets"].get(
-                                tid, 0) + 1
-                            break
+        if not is_new:
+            frag_count = user["fragments"].get(card_name, 0)
+            footer_parts.append(f"Shards: {frag_count}")
 
-            # Card pull
-            chosen = random.choices(cards_list, weights=weights, k=1)[0]
-            card_name = chosen.get("name", "Unknown")
-            rarity_key = chosen.get("rarity", "C")
-            rarity_info = rarities.get(rarity_key, {})
-            rarity_emoji = rarity_info.get("emoji", "⭐")
-
-            user.setdefault("cards", [])
-            user.setdefault("unlocked", [])
-            user.setdefault("fragments", {})
-
-            if card_name not in user.get("unlocked", []):
-                # New unlock
-                user.setdefault("unlocked", []).append(card_name)
-                user["cards"].append(
-                    {
-                        "name": card_name,
-                        "rarity": rarity_key,
-                        "level": 1,
-                        "exp": 0,
-                        "evo": 0,
-                        "aura": 0,
-                    }
-                )
-                count, _ = new_counts.get(card_name, (0, rarity_emoji))
-                new_counts[card_name] = (count + 1, rarity_emoji)
-            else:
-                # Fragment (duplicate)
-                user["fragments"][card_name] = user["fragments"].get(
-                    card_name, 0) + 1
-                card_emoji = emojis.get(card_name) or "🧩"
-                count, _ = shard_counts.get(card_name, (0, card_emoji))
-                shard_counts[card_name] = (count + 1, card_emoji)
-
-        # Save user data
-        users[uid] = user
-        save(USERS_FILE, users)
-
-        # Result embed
-        result_embed = discord.Embed(
-            title="✨ Mass Pull Complete!",
-            description=f"Pulled **{amount}** characters!",
-            color=0x2ECC71,
-        )
-        result_embed.set_author(
-            name=ctx.author.display_name,
-            icon_url=ctx.author.display_avatar.url,
-        )
-
-        # New cards section (rarity emoji)
-        if new_counts:
-            new_lines = []
-            for name, (count, rarity_emoji) in list(new_counts.items())[:15]:
-                if count == 1:
-                    new_lines.append(f"{rarity_emoji} **{name}**")
-                else:
-                    new_lines.append(f"{rarity_emoji} **{name}** ×`{count}`")
-            if len(new_counts) > 15:
-                new_lines.append(f"*...and {len(new_counts) - 15} more*")
-            result_embed.add_field(
-                name="🎴 New Cards",
-                value="\n".join(new_lines) or "None",
-                inline=False,
-            )
-
-        # Fragment section (card emoji)
-        if shard_counts:
-            shard_lines = []
-            for name, (count, card_emoji) in list(shard_counts.items())[:15]:
-                shard_lines.append(
-                    f"{card_emoji or '🧩'} **{name}** ×`{count}`")
-            if len(shard_counts) > 15:
-                shard_lines.append(f"*...and {len(shard_counts) - 15} more*")
-            result_embed.add_field(
-                name="💎 Fragments",
-                value="\n".join(shard_lines) or "None",
-                inline=False,
-            )
-
-        if tickets_gained:
-            ticket_text = "\n".join(
-                [f"• **{tid}:** `{count}`" for tid,
-                    count in tickets_gained.items()]
-            )
-            result_embed.add_field(
-                name="�🎫 Tickets Gained",
-                value=ticket_text,
-                inline=False,
-            )
-
-        result_embed.add_field(
-            name="🃏 Remaining Pulls",
-            value=f"`{user['pulls']}/12`",
-            inline=True,
-        )
-
-        result_embed.set_footer(text="Thanks for supporting us on Patreon! 💜")
-        await msg.edit(embed=result_embed)
-
-    @commands.command(name="mr")
-    async def mass_reset_and_pull(self, ctx):
-        """Patreon-only: use one reset token to refill pulls, then mass pull all at once."""
-        # Patreon check
-        member = ctx.guild.get_member(
-            ctx.author.id) if ctx.guild else ctx.author
-        if not has_patreon_role(member):
-            embed = discord.Embed(
-                title="❌ Patreon Only",
-                description="This command is only available to **Patreon members**!\n\nSupport us on Patreon to unlock this feature!",
-                color=0xE74C3C,
-            )
-            embed.set_author(
-                name=ctx.author.display_name,
-                icon_url=ctx.author.display_avatar.url,
-            )
-            return await ctx.send(embed=embed)
-
-        # Load user and check reset tokens
-        users = load(USERS_FILE)
-        uid = str(ctx.author.id)
-        user = self.ensure_user(users, uid)
-
-        reset_tokens = user.get("reset_tokens", 0)
-        if reset_tokens < 1:
-            embed = discord.Embed(
-                title="❌ No Reset Tokens",
-                description=(
-                    "You don't have any reset tokens!\n\n"
-                    "Ask an admin to give you reset tokens using `ls add reset <amount> @user`"
-                ),
-                color=0xE74C3C,
-            )
-            embed.set_author(
-                name=ctx.author.display_name,
-                icon_url=ctx.author.display_avatar.url,
-            )
-            return await ctx.send(embed=embed)
-
-        # Refill pulls using one reset token
-        user["pulls"] = config.MAX_PULLS
-        user["reset_tokens"] = reset_tokens - 1
-        user["last_pull_regen_ts"] = int(time.time())
-        users[uid] = user
-        save(USERS_FILE, users)
-
-        # Now perform the same mass pull logic as mp
-        amount = user.get("pulls", 0)
-        if amount <= 0:
-            embed = discord.Embed(
-                title="❌ Out of Pulls!",
-                description=(
-                    f"You have `{user.get('pulls', 0)}/12` pulls left. "
-                    "Nothing to mass pull.\n\nUse `ls cd` to check cooldowns."
-                ),
-                color=0xE74C3C,
-            )
-            embed.set_author(
-                name=ctx.author.display_name,
-                icon_url=ctx.author.display_avatar.url,
-            )
-            return await ctx.send(embed=embed)
-
-        loading_embed = discord.Embed(
-            title="✨ Reset + Mass Pulling...",
-            description=(
-                f"Used 1 reset token to refill pulls to **{config.MAX_PULLS}/{config.MAX_PULLS}**.\n"
-                f"Now pulling **{amount}** characters..."
-            ),
-            color=0x5865F2,
-        )
-        loading_embed.set_author(
-            name=ctx.author.display_name,
-            icon_url=ctx.author.display_avatar.url,
-        )
-        loading_embed.set_footer(text="This may take a moment...")
-        msg = await ctx.send(embed=loading_embed)
-
-        cards_dict = load(CARDS_FILE)
-        rarities = load(RARITIES_FILE)
-        bosses = load(BOSSES_FILE)
-
-        if not cards_dict:
-            embed = discord.Embed(
-                title="❌ No Cards Available",
-                description="Card database is empty!",
-                color=0xE74C3C,
-            )
-            await msg.edit(embed=embed)
-            return
-
-        cards_list = list(cards_dict.values())
-        weights = []
-        for card in cards_list:
-            rarity_key = card.get("rarity", "C")
-            rarity_info = rarities.get(rarity_key, {})
-            weight = rarity_info.get("weight_multiplier", 5)
-            weights.append(weight)
-
-        emojis = load(EMOJI_FILE) or {}
-
-        new_counts = {}
-        shard_counts = {}
-        tickets_gained = {}
-
-        user["pulls"] -= amount
-
-        for _ in range(amount):
-            if bosses and random.random() * 100 <= 2.5:
-                total = sum(b.get("ticket_drop_rate", 0)
-                            for b in bosses.values())
-                if total > 0:
-                    r = random.uniform(0, total)
-                    curr = 0
-                    for b in bosses.values():
-                        curr += b.get("ticket_drop_rate", 0)
-                        if r <= curr:
-                            tid = f"{b.get('name', '').lower().replace(' ', '_')}_ticket"
-                            tickets_gained[tid] = tickets_gained.get(
-                                tid, 0) + 1
-                            user.setdefault("tickets", {})
-                            user["tickets"][tid] = user["tickets"].get(
-                                tid, 0) + 1
-                            break
-
-            chosen = random.choices(cards_list, weights=weights, k=1)[0]
-            card_name = chosen.get("name", "Unknown")
-            rarity_key = chosen.get("rarity", "C")
-            rarity_info = rarities.get(rarity_key, {})
-            rarity_emoji = rarity_info.get("emoji", "⭐")
-
-            user.setdefault("cards", [])
-            user.setdefault("unlocked", [])
-            user.setdefault("fragments", {})
-
-            if card_name not in user.get("unlocked", []):
-                user.setdefault("unlocked", []).append(card_name)
-                user["cards"].append(
-                    {
-                        "name": card_name,
-                        "rarity": rarity_key,
-                        "level": 1,
-                        "exp": 0,
-                        "evo": 0,
-                        "aura": 0,
-                    }
-                )
-                count, _ = new_counts.get(card_name, (0, rarity_emoji))
-                new_counts[card_name] = (count + 1, rarity_emoji)
-            else:
-                user["fragments"][card_name] = user["fragments"].get(
-                    card_name, 0) + 1
-                card_emoji = emojis.get(card_name) or "🧩"
-                count, _ = shard_counts.get(card_name, (0, card_emoji))
-                shard_counts[card_name] = (count + 1, card_emoji)
-
-        users[uid] = user
-        save(USERS_FILE, users)
-
-        result_embed = discord.Embed(
-            title="✨ Reset + Mass Pull Complete!",
-            description=f"Pulled **{amount}** characters after resetting pulls!",
-            color=0x2ECC71,
-        )
-        result_embed.set_author(
-            name=ctx.author.display_name,
-            icon_url=ctx.author.display_avatar.url,
-        )
-
-        if new_counts:
-            new_lines = []
-            for name, (count, rarity_emoji) in list(new_counts.items())[:15]:
-                if count == 1:
-                    new_lines.append(f"{rarity_emoji} **{name}**")
-                else:
-                    new_lines.append(f"{rarity_emoji} **{name}** ×`{count}`")
-            if len(new_counts) > 15:
-                new_lines.append(f"*...and {len(new_counts) - 15} more*")
-            result_embed.add_field(
-                name="🎴 New Cards",
-                value="\n".join(new_lines) or "None",
-                inline=False,
-            )
-
-        if shard_counts:
-            shard_lines = []
-            for name, (count, card_emoji) in list(shard_counts.items())[:15]:
-                shard_lines.append(
-                    f"{card_emoji or '🧩'} **{name}** ×`{count}`")
-            if len(shard_counts) > 15:
-                shard_lines.append(f"*...and {len(shard_counts) - 15} more*")
-            result_embed.add_field(
-                name="💎 Fragments",
-                value="\n".join(shard_lines) or "None",
-                inline=False,
-            )
-
-        if tickets_gained:
-            ticket_text = "\n".join(
-                [f"• **{tid}:** `{count}`" for tid,
-                    count in tickets_gained.items()]
-            )
-            result_embed.add_field(
-                name="🎫 Tickets Gained",
-                value=ticket_text,
-                inline=False,
-            )
-
-        result_embed.add_field(
-            name="🃏 Remaining Pulls",
-            value=f"`{user['pulls']}/12`",
-            inline=True,
-        )
-
-        result_embed.set_footer(text="Thanks for supporting us on Patreon! 💜")
-        await msg.edit(embed=result_embed)
+        final_embed.set_footer(text=" • ".join(footer_parts))
+        await msg.edit(embed=final_embed, view=None)
 
 
-async def setup(bot):
-    await bot.add_cog(Gacha(bot))
+def setup(bot):
+    bot.add_cog(Gacha(bot))

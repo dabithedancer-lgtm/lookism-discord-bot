@@ -3,7 +3,6 @@ import time
 import json
 import os
 from discord.ext import commands
-from discord.ui import View, Select
 import config
 
 USERS_FILE = "data/users.json"
@@ -28,71 +27,7 @@ def save(data, filename):
         print(f"Error saving {filename}: {e}")
 
 
-class PatreonTierSelect(Select):
-    """Dropdown to select Patreon tier like help command"""
-
-    def __init__(self, ctx: commands.Context):
-        self.ctx = ctx
-        options = [
-            discord.SelectOption(label="Copy Tier", value="copy",
-                                 description="$10/month - Perfect for starting supporters", emoji="🥉"),
-            discord.SelectOption(label="UI Tier", value="ui",
-                                 description="$25/month - Great value for dedicated players", emoji="🥈"),
-            discord.SelectOption(label="TUI Tier", value="tui",
-                                 description="$50/month - Ultimate experience for top supporters", emoji="🥇"),
-            discord.SelectOption(label="How to Get", value="how",
-                                 description="Learn how to become a patron", emoji="🔗"),
-        ]
-        super().__init__(
-            placeholder="Select a Patreon tier or option…",
-            min_values=1,
-            max_values=1,
-            options=options,
-        )
-
-    async def callback(self, interaction: discord.Interaction):
-        # Only the original user can use this menu
-        if interaction.user != self.ctx.author:
-            await interaction.response.send_message("❌ This menu isn't for you! Run `ls patreon` to open your own.", ephemeral=True)
-            return
-
-        value = self.values[0]
-
-        def base_embed(title: str, desc: str, color: int) -> discord.Embed:
-            embed = discord.Embed(title=title, description=desc, color=color)
-            embed.set_author(name="Patreon Support",
-                             icon_url=self.ctx.author.display_avatar.url)
-            return embed
-
-        if value == "copy":
-            embed = base_embed("🥉 Copy Tier - $10/month",
-                               "**Perfect for starting supporters!**\n\n**Perks:**\n• 10% off on evolving\n• 1 extra roll (14 total pulls)\n• 10% more experience\n• 2k yen every bundle\n• -1 hour quest cooldown\n• Multiroll command\n• Bundle command (24h reset)\n\n**Ideal for:** Casual players who want a small boost", 0xC0C0C0)
-            embed.set_footer(
-                text="Upgrade anytime! Benefits stack with higher tiers.")
-        elif value == "ui":
-            embed = base_embed("🥈 UI Tier - $25/month",
-                               "**Great value for dedicated players!**\n\n**Perks:**\n• 15% off on evolving\n• 2 extra rolls (17 total pulls)\n• 15% more experience\n• 3k yen every bundle\n• Locker loot crate\n• -1.5 hour quest cooldown\n• 1 ticket (random boss)\n• 5% vasco, 7% zack, 88% jace rates\n• Multiroll command\n\n**Ideal for:** Regular players who want significant benefits", 0x9B59B6)
-            embed.set_footer(text="Best value tier! Includes all Copy perks.")
-        elif value == "tui":
-            embed = base_embed("🥇 TUI Tier - $50/month",
-                               "**Ultimate experience for top supporters!**\n\n**Perks:**\n• 1 fragment discount per level\n• 20% off on evolving\n• 3 extra rolls (22 total pulls)\n• 20% more experience\n• 5k yen every bundle\n• Random crate (Locker loot/2nd tier)\n• -2 hour quest cooldown\n• 1 ticket each (vasco, jace, zack)\n• 10% vasco, 15% zack, 75% jace rates\n• Multiroll command\n• 1.5x aura points\n• 1.5x bounty points\n\n**Ideal for:** Dedicated players who want the best experience", 0xF1C40F)
-            embed.set_footer(text="Premium tier! Includes all previous perks.")
-        else:  # how
-            embed = base_embed("🔗 How to Become a Patron",
-                               "**Getting your Patreon perks is easy!**\n\n**Steps:**\n1. **Subscribe on Patreon** (link coming soon)\n2. **Get your Discord User ID** (right-click your profile → Copy ID)\n3. **Contact an admin** with your User ID\n4. **Receive your perks** instantly!\n\n**Or ask in #support channel for help!**\n\n**Current Admins:** Contact server moderators for assistance.", 0x3498DB)
-
-        await interaction.response.edit_message(embed=embed, view=self.view)
-
-
-class PatreonView(View):
-    """Simple view wrapping the tier select"""
-
-    def __init__(self, ctx: commands.Context):
-        super().__init__(timeout=180)
-        self.add_item(PatreonTierSelect(ctx))
-
-
-class OldPatreonView(discord.ui.View):
+class PatreonView(discord.ui.View):
     def __init__(self):
         super().__init__(timeout=180)
 
@@ -234,8 +169,26 @@ class Patreon(commands.Cog):
         # Main Patreon info embed
         embed = discord.Embed(
             title="👑 Patreon Support Tiers",
-            description="**Your support means everything to us!** 🌟\n\nRunning and maintaining this bot takes countless hours of development, server costs, and dedication. Every Patreon subscription helps us keep the lights on, bring you exciting new features, and ensure the bot stays online 24/7 for everyone to enjoy. Your support directly fuels our passion to create amazing gaming experiences and allows us to continuously improve the bot with new cards, events, and content that makes your adventure even more epic!\n\n**All subscriptions last 30 days** and can be renewed anytime.",
+            description="Support our server and get amazing benefits!\n\n**All subscriptions last 30 days** and can be renewed anytime.",
             color=0xF1C40F
+        )
+
+        embed.add_field(
+            name="🥉 Copy Tier - $10/month",
+            value="• 10% off on evolving\n• 1 roll\n• 10% more exp\n• 2k yen every bundle\n• -1 hour quest cd (st)\n• Multiroll\n• ls bundle command (24h reset)",
+            inline=False
+        )
+
+        embed.add_field(
+            name="🥈 UI Tier - $25/month",
+            value="• 15% off on evolving\n• 2 rolls\n• 15% more exp\n• 3k yen every bundle\n• locker loot crate\n• -1.5 hour quest cd (st)\n• 1 ticket\n• 5% for vasco 7% for Zack and 88% for Jace\n• Multiroll",
+            inline=False
+        )
+
+        embed.add_field(
+            name="🥇 TUI Tier - $50/month",
+            value="• 1 frag discount per level\n• 20% off on evolving\n• 3 rolls\n• 20% more exp\n• 5k yen every bundle\n• Random crate (Locker loot/2nd tier)\n• -2 hour quest cd (st)\n• 1 ticket (vasco,Jace,Zack)\n• 10% vasco 15% Zack 75% Jace\n• Multiroll\n• 1.5x aura points\n• 1.5x bounty points",
+            inline=False
         )
 
         embed.add_field(
@@ -250,7 +203,7 @@ class Patreon(commands.Cog):
             url="https://media.tenor.com/2RoDo8pZt6wAAAAC/black-clover-mobile-summon.gif")
 
         # Create and attach the interactive view
-        view = PatreonView(ctx)
+        view = PatreonView()
         await ctx.send(embed=embed, view=view)
         print(f"Patreon command completed for {ctx.author.name}")
 
