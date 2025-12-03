@@ -37,8 +37,8 @@ bot = commands.Bot(command_prefix=config.PREFIXES,
                    intents=intents, help_command=None, case_insensitive=True)
 
 
-def load_extensions():
-    """Load all cogs synchronously"""
+async def load_extensions():
+    """Load all cogs asynchronously"""
     # Ensure data folder exists
     if not os.path.exists("./data"):
         os.makedirs("./data")
@@ -62,18 +62,18 @@ def load_extensions():
     # Load cogs
     for extension in initial_extensions:
         try:
-            bot.load_extension(extension)
+            await bot.load_extension(extension)
             print(f"Loaded {extension}")
         except Exception as e:
             print(f"Failed to load {extension}: {e}")
 
 
-def main():
+async def main():
     # Load extensions first
-    load_extensions()
+    await load_extensions()
 
     # Start the bot
-    bot.run(config.TOKEN)
+    await bot.start(config.TOKEN)
 
 
 @bot.event
@@ -90,5 +90,5 @@ if __name__ == "__main__":
     # Start Flask in a separate thread
     keep_alive()
 
-    # Run the bot
-    main()
+    # Run the async main function
+    asyncio.run(main())
