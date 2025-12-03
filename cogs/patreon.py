@@ -951,7 +951,7 @@ class Patreon(commands.Cog):
         await msg.edit(embed=result_embed)
 
 
-def setup(bot):
+async def setup(bot):
     print("Setting up Patreon cog...")
-    bot.add_cog(Patreon(bot))
+    await bot.add_cog(Patreon(bot))
     print("Patreon cog loaded successfully!")
