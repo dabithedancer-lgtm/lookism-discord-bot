@@ -123,4 +123,9 @@ if __name__ == "__main__":
     keep_alive()
 
     # Run the async main function
-    asyncio.run(main())
+    try:
+        asyncio.run(main())
+    except Exception as e:
+        print(f"Failed to start bot: {e}")
+        import traceback
+        traceback.print_exc()
