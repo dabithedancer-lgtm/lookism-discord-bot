@@ -33,7 +33,7 @@ GANG_CREATE_COST = 150000
 MINE_COOLDOWN = 14400  # 4 hours
 
 # URLs (Placeholders - Replace with your actual URLs)
-IMG_SUMMON_ORB = "https://bestanimations.com/Music/Dancers/anime-dancing-girls/anime-kawaii-cute-dance-animated-gif-image-15.gif"
+IMG_SUMMON_ORB = "https://media.giphy.com/media/l4FGKXWb9iF4kE2yI/giphy.gif"
 IMG_TERRITORY_MAP = "https://example.com/map.jpg"
 
 # Patreon Role IDs

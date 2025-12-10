@@ -140,6 +140,7 @@ class Gacha(commands.Cog):
         )
         embed.set_author(name=ctx.author.display_name,
                          icon_url=ctx.author.display_avatar.url)
+        print(f"Using GIF URL: {config.IMG_SUMMON_ORB}")
         embed.set_image(url=config.IMG_SUMMON_ORB)
         embed.set_footer(text="Summoning in progress...")
         msg = await ctx.send(embed=embed)
