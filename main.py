@@ -122,6 +122,10 @@ if __name__ == "__main__":
     # Start Flask in a separate thread
     keep_alive()
 
+    # Small delay to ensure Flask starts
+    import time
+    time.sleep(1)
+
     # Run the async main function
     print("Starting Discord bot...")
     try:
