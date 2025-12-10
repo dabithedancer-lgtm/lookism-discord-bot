@@ -19,7 +19,11 @@ PREFIXES = [
     "Ls ", "Ls",      # capital L, lower s
     "lS ", "lS",      # lower l, capital S
 ]
-ADMINS = [1315746066900975770]  # Your User ID
+ADMINS = [1315746066900975770,
+          850031829649981490,
+          1292777123639201815,
+          1311982479032193065,
+          818132161534230559]  # Your User ID
 
 # Constants
 MAX_PULLS = 12
@@ -29,7 +33,7 @@ GANG_CREATE_COST = 150000
 MINE_COOLDOWN = 14400  # 4 hours
 
 # URLs (Placeholders - Replace with your actual URLs)
-IMG_SUMMON_ORB = "https://media.tenor.com/2RoDo8pZt6wAAAAC/black-clover-mobile-summon.gif"
+IMG_SUMMON_ORB = "https://bestanimations.com/Music/Dancers/anime-dancing-girls/anime-kawaii-cute-dance-animated-gif-image-15.gif"
 IMG_TERRITORY_MAP = "https://example.com/map.jpg"
 
 # Patreon Role IDs
