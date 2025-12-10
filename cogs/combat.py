@@ -1300,20 +1300,20 @@ class Combat(commands.Cog):
                 return await ctx.send(embed=embed)
 
         # Check if user has enough victim fragments
-            victim_count = fragments.get(victim_fragment, 0)
-            if victim_count < amount_to_kill:
-                embed = discord.Embed(
-                    title="❌ Not Enough Victim Fragments",
-                    description=f"You need `{amount_to_kill}` **{victim_fragment}** fragments but only have `{victim_count}`",
-                    color=0xE74C3C
-                )
-                return await ctx.send(embed=embed)
+        victim_count = fragments.get(victim_fragment, 0)
+        if victim_count < amount_to_kill:
+            embed = discord.Embed(
+                title="❌ Not Enough Victim Fragments",
+                description=f"You need `{amount_to_kill}` **{victim_fragment}** fragments but only have `{victim_count}`",
+                color=0xE74C3C
+            )
+            return await ctx.send(embed=embed)
 
-            # Get victim card data to determine rarity
-            cards_db = load(CARDS_FILE)
-            victim_base = next((c for c in cards_db.values()
-                               if c.get('name') == victim_fragment), None)
-            if not victim_base:
+        # Get victim card data to determine rarity
+        cards_db = load(CARDS_FILE)
+        victim_base = next((c for c in cards_db.values()
+                           if c.get('name') == victim_fragment), None)
+           if not victim_base:
                 return await ctx.send("❌ Could not find victim card data!")
 
             # Get aura drop value based on rarity
