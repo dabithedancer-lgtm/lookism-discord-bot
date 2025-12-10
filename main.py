@@ -122,10 +122,7 @@ if __name__ == "__main__":
     if platform.system() == 'Windows':
         asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
-    # Start Flask in a separate thread
-    keep_alive()
-
-    # Run the async main function
+    # Run the async main function first
     print("Starting Discord bot...")
     try:
         asyncio.run(main())
@@ -133,3 +130,11 @@ if __name__ == "__main__":
         print(f"Failed to start bot: {e}")
         import traceback
         traceback.print_exc()
+    finally:
+        # Start Flask keep-alive after Discord bot setup
+        print("Starting keep-alive Flask server...")
+        keep_alive()
+        print("Flask server started. Keeping process alive...")
+        import time
+        while True:
+            time.sleep(60)  # Keep the process alive
