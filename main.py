@@ -25,10 +25,13 @@ def health():
 def run_flask():
     """Run Flask app in a way that doesn't block the event loop"""
     import os
+    from werkzeug.serving import make_server
+
     port = int(os.environ.get('PORT', 8080))
     print(f"Starting Flask server on port {port}...")
     try:
-        app.run(host='0.0.0.0', port=port, use_reloader=False, debug=False)
+        server = make_server('0.0.0.0', port, app)
+        server.serve_forever()
     except Exception as e:
         print(f"Flask server error: {e}")
 
