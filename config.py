@@ -1,10 +1,16 @@
 # config.py
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from token.env file
+load_dotenv('token.env')
 
 # Read token from environment variables
 TOKEN = os.getenv('DISCORD_TOKEN')
+print(f"Token loaded: {TOKEN[:10]}..." if TOKEN else "Token not found")
 
 if not TOKEN:
+    print("Token not found")
     raise ValueError("DISCORD_TOKEN not found in environment variables!")
 
 PREFIXES = [

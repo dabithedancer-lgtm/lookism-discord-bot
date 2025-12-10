@@ -16,16 +16,25 @@ app = Flask('')
 def home():
     return "Bot is running!"
 
+@app.route('/health')
+def health():
+    return {"status": "healthy", "bot": "online"}
+
 
 def run_flask():
     """Run Flask app in a way that doesn't block the event loop"""
-    app.run(host='0.0.0.0', port=8080, use_reloader=False, debug=False)
+    try:
+        app.run(host='0.0.0.0', port=8080, use_reloader=False, debug=False)
+    except Exception as e:
+        print(f"Flask server error: {e}")
 
 
 def keep_alive():
     """Start Flask server in a separate daemon thread"""
+    print("Starting keep-alive Flask server...")
     flask_thread = Thread(target=run_flask, daemon=True)
     flask_thread.start()
+    print("Keep-alive Flask server started in background thread")
 
 
 # Enable Intents (Required for Pycord)
@@ -37,7 +46,7 @@ bot = commands.Bot(command_prefix=config.PREFIXES,
                    intents=intents, help_command=None, case_insensitive=True)
 
 
-async def load_extensions():
+async def load_extensions(bot):
     """Load all cogs asynchronously"""
     # Ensure data folder exists
     if not os.path.exists("./data"):
@@ -70,7 +79,7 @@ async def load_extensions():
 
 async def main():
     # Load extensions first
-    await load_extensions()
+    await load_extensions(bot)
 
     # Start the bot
     await bot.start(config.TOKEN)
