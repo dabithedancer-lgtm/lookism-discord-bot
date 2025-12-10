@@ -143,7 +143,13 @@ class Gacha(commands.Cog):
         print(f"Using GIF URL: {config.IMG_SUMMON_ORB}")
         embed.set_image(url=config.IMG_SUMMON_ORB)
         embed.set_footer(text="Summoning in progress...")
-        msg = await ctx.send(embed=embed)
+        try:
+            msg = await ctx.send(embed=embed)
+        except Exception as e:
+            print(f"Error sending embed with GIF: {e}")
+            # Fallback without GIF
+            embed.remove_image()
+            msg = await ctx.send(embed=embed)
 
         await asyncio.sleep(random.uniform(1.0, 2.0))
 
