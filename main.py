@@ -123,6 +123,7 @@ if __name__ == "__main__":
     keep_alive()
 
     # Run the async main function
+    print("Starting Discord bot...")
     try:
         asyncio.run(main())
     except Exception as e:
