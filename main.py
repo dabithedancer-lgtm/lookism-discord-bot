@@ -89,18 +89,23 @@ async def main():
     max_retries = 5
     retry_delay = 30  # seconds
 
-    for attempt in range(max_retries):
-        try:
-            await bot.start(config.TOKEN)
-            break
-        except discord.errors.HTTPException as e:
-            if "429" in str(e) and attempt < max_retries - 1:
-                print(
-                    f"Rate limited. Retrying in {retry_delay} seconds... (Attempt {attempt + 1}/{max_retries})")
-                await asyncio.sleep(retry_delay)
-                retry_delay *= 2  # Exponential backoff
-            else:
-                raise e
+    try:
+        for attempt in range(max_retries):
+            try:
+                await bot.start(config.TOKEN)
+                break
+            except discord.errors.HTTPException as e:
+                if "429" in str(e) and attempt < max_retries - 1:
+                    print(
+                        f"Rate limited. Retrying in {retry_delay} seconds... (Attempt {attempt + 1}/{max_retries})")
+                    await asyncio.sleep(retry_delay)
+                    retry_delay *= 2  # Exponential backoff
+                else:
+                    raise e
+    finally:
+        # Properly close the bot session
+        if not bot.is_closed():
+            await bot.close()
 
 
 @bot.event
