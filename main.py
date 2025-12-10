@@ -126,10 +126,14 @@ if __name__ == "__main__":
     print("Starting Discord bot...")
     try:
         asyncio.run(main())
+        print("Bot started successfully!")
+    except KeyboardInterrupt:
+        print("Bot stopped by user")
     except Exception as e:
         print(f"Failed to start bot: {e}")
         import traceback
         traceback.print_exc()
+        print("Bot crashed, starting Flask for keep-alive...")
     finally:
         # Start Flask keep-alive after Discord bot setup
         print("Starting keep-alive Flask server...")
